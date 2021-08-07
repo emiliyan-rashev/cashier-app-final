@@ -1,0 +1,22 @@
+{% load hh_admin %}
+<nav>
+	<a href="/">Home</a>
+	<a href="#">Reports</a>
+	<a href="{% url 'contact_view' %}">Contacts</a>
+
+	{% if not user.is_authenticated %}
+        <a href="{% url 'register_view' %}">Register</a>
+        <a href="{% url 'login_view' %}">Login</a>
+	{% endif %}
+	{% if user.is_authenticated %}
+	    <a href="{% url 'logout_view' %}">Logout</a>
+        <a href="{% url 'view_profile' user.id %}">{{ user.username }}</a>
+        {% hh_admin %}
+        <a href="{% url 'payment_types' %}">Payments</a>
+	{% endif %}
+	{% block logged_content %}
+	{% endblock %}
+
+{% block admin_content %}
+{% endblock %}
+</nav>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load hh_admin %}
+{% block content %}
+
+    {{ formset }}
+    {{ form }}
+    <h1>Apartment {{ household.apartment }}'s profile</h1>
+    <b>Percent ideal parts: </b>
+    {% if household.apartment_percent_ideal_parts %}
+        {{ household.apartment_percent_ideal_parts }}%
+    {% else %}
+        Not added
+    {% endif %}
+    <br/>
+
+    <b>Household balance:</b>
+    {% if household.household_balance > 0 %}
+        +{{ household.household_balance }}
+    {% elif household.household_balance < 0 %}
+        -{{ household.household_balance }}
+    {% else %}
+        0
+    {% endif %}
+    <br/>
+
+    <b>Members ({{ hh_members.count }}):</b>
+        <ul>
+            {% for curr_member in hh_members %}
+                <li>
+                    {% if curr_member.is_household_admin %}
+                        <i>(HH admin)</i>
+                    {% endif %}
+                    {{ curr_member.first_name }} <!-- Should have a href for the user's profile... There the admin can remove non admin users :) avoiding bulk editing again -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% if is_hh_admin %}
+        <a href="{% url 'hh_profile_edit' household.apartment %}">Edit</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    You can edit some info for the whole bulding.
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>Save</button>
+    </form>
+{% endblock %}

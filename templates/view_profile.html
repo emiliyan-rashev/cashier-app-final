@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    Names: {{ profile.first_name }} {{ profile.last_name }}<br/>
+    email: {{ profile.email }}<br/>
+    Phone number: {{ profile.phone_number }}<br/>
+    Apartment: {{ profile.apartment }}<br/>
+    Household admin: {{ profile.is_household_admin }}<br/>
+    Lives in apartment: {{ profile.live_in_apartment }}<br/>
+    {% if profile.user == request.user %}
+        Receive email alerts: {{ profile.newsletter_agreement }}<br/>
+        <a href="{% url 'edit_profile' %}">Edit profile</a>
+        <a href="{% url 'delete_profile' %}">Delete profile</a>
+    {% endif %}
+{% endblock %}

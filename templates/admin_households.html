@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="default_table">
+    <tr>
+        <th>
+            Apartment
+        </th>
+        <th>
+            % ideal parts
+        </th>
+        <th>
+            Balance
+        </th>
+    </tr>
+        {% for curr_hh in households %}
+            <tr>
+                <td>
+                    <a href="">{{ curr_hh.apartment }}</a>
+                </td>
+                <td>
+                    {{ curr_hh.apartment_percent_ideal_parts }}
+                </td>
+                <td>
+                    {{ curr_hh.household_balance }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

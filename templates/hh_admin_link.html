@@ -1,0 +1,4 @@
+<!--Not the best use of inclusion tag :)-->
+{% if is_hh_admin %}
+<a href="{% url 'hh_profile' apartment %}">Apt. {{ apartment }}</a>
+{% endif %}

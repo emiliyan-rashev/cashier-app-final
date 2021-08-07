@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load current_tax %}
+
+{% block content %}
+    <h1>{% tax_admin %}</h1>
+    {% if form.fields %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button>Pay</button>
+        </form>
+    {% else %}
+        You have payed all your taxes :)
+    {% endif %}
+
+{% endblock %}

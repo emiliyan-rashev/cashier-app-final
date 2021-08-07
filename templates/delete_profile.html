@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    You are about to delete you profile!<br/>
+    <a type="button" href="{% url 'home_view' %}">Cancel</a>
+    <form method="post">
+    {% csrf_token %}
+    <button>Delete</button>
+    </form>
+{% endblock %}

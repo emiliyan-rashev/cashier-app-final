@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" action="{% url 'register_view' %}">
+{{ user_form }}
+    {% csrf_token %}
+{{ profile_form }}
+<button>Register</button>
+</form>
+{% endblock %}

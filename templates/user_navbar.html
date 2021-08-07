@@ -1,0 +1,6 @@
+{% extends "../cashier/profiles/templatetags/base_navbar.html" %}
+
+{% block logged_content %}
+	<a href="#">Logout</a>
+	<a href="{% url 'edit_profile' %}">Edit profile</a> <!-- Add a delete profile button in the Edit profile view -->
+{% endblock %}
