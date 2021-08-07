@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
@@ -9,10 +10,11 @@ from cashier.profiles.models import UserProfile
 
 class PaymentsAdminView(UpdateView):
     model = PaymentsAdmin
-    fields = '__all__'
+    fields = ('individual_monthly_tax', 'salaries')
     template_name = 'admin_payments.html'
     def get_object(self, queryset=None):
         return self.model.objects.first()
+
     success_url = reverse_lazy('home_view')
 
 class PaymentTypes(View):

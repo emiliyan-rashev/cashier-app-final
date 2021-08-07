@@ -2,14 +2,21 @@
 
 {% block admin_content %}
 	<!-- This should be a separate view for the admin(s) -->
-	<a href="#">Remove users</a>
-	<a href="#">Add stuff (payments types...)</a>
-	<a href="#">Set household admin</a>
-	<a href="#">Add general expenses</a>
-	<a href="#">Get mail/ phones (filterd by newseletter agreed)</a>
-	<a href="#">Update taxes, salaries...</a>
-	<a href="#">Add payments (taxes payed in cash)</a>
-	<a href="#">Edit profiles (maybe ideal part only)</a>
-	<a href="#">Add general incomes</a>
-	<a href="#"></a>
+    Users Admin -
+        user.is_active = True/False (to add a signal when deactivated ако не съм сложил още)
+    Profiles Admin -
+        remove user from household,
+        get email/ phone list (filtered by newsletter agreement) and maybe to send email alerts
+    Payments Admin -
+        Add general incomes/ expenses (should include description and maybe some choices);
+        <a href="{% url 'payments_admin' %}">Update taxes, salaries...</a>;
+        Add individual payments (payed in cash);
+    Households Admin -
+        Set HH admins
+        Update ideal parts (maybe)
+
+
+
+
+    HOusehold in profiles model not working!
 {% endblock %}

@@ -1,8 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
 from cashier.households.models import HouseholdProfile
-from cashier.payments.models import PaymentsAdmin, IndividualPayment
+from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMonth, SalariesPerMonth
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
 
@@ -17,3 +15,6 @@ admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(HouseholdProfile)
 admin.site.register(PaymentsAdmin)
 admin.site.register(IndividualPayment)
+admin.site.register(TaxesPerMonth)
+admin.site.register(SalariesPerMonth)
+

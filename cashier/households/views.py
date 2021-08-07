@@ -24,6 +24,14 @@ class HouseholdEditProfileView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})
 
+class HouseholdRemoveUser(UpdateView):
+    model = UserProfile
+    fields = ('live_in_apartment',)
+    template_name = 'hh_remove_user.html'
+
+    def get_success_url(self):
+        return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
+
 def HouseholdAdminView(request):
     households = HouseholdProfile.objects.all()
     context = {

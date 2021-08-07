@@ -30,7 +30,10 @@
                     {% if curr_member.is_household_admin %}
                         <i>(HH admin)</i>
                     {% endif %}
-                    {{ curr_member.first_name }} <!-- Should have a href for the user's profile... There the admin can remove non admin users :) avoiding bulk editing again -->
+                    {{ curr_member.first_name }}
+                    {% if not curr_member.is_household_admin %}
+                        <a href="{% url 'hh_profile_remove' curr_member.user.id %}">Remove from household</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

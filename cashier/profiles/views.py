@@ -20,6 +20,11 @@ class EditProfileView(UpdateView):
         return self.model.objects.get(user=self.request.user)
     success_url = reverse_lazy('home_view')
 
+def confirm_delete(request):
+    if request.method == 'POST':
+        return DeleteProfileView(request)
+    return render(request, 'delete_profile.html')
+
 def DeleteProfileView(request):
     user = request.user
     user.is_active = False
