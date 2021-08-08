@@ -2,8 +2,6 @@
 {% load hh_admin %}
 {% block content %}
 
-    {{ formset }}
-    {{ form }}
     <h1>Apartment {{ household.apartment }}'s profile</h1>
     <b>Percent ideal parts: </b>
     {% if household.apartment_percent_ideal_parts %}
@@ -30,9 +28,15 @@
                     {% if curr_member.is_household_admin %}
                         <i>(HH admin)</i>
                     {% endif %}
+                    {% if not curr_member.household %}
+                        (Not approved)
+                    {% endif %}
                     {{ curr_member.first_name }}
-                    {% if not curr_member.is_household_admin %}
+                    {% if not curr_member.is_household_admin and is_hh_admin and curr_member.household %}
                         <a href="{% url 'hh_profile_remove' curr_member.user.id %}">Remove from household</a>
+                    {% endif %}
+                    {% if not curr_member.household and is_hh_admin %}
+                        <a href="{% url 'hh_approve_user' curr_member.user.id %}">Approve / Reject</a>
                     {% endif %}
                 </li>
             {% endfor %}

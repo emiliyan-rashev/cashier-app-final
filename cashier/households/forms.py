@@ -7,4 +7,6 @@ class HouseholdProfileForm(forms.ModelForm):
         model = HouseholdProfile
         fields = ('apartment_percent_ideal_parts',)
 
+class UserApproveForm(forms.Form):
+    approve = forms.BooleanField(required=False)
 

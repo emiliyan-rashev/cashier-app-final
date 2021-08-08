@@ -1,7 +1,8 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import login, logout, get_user_model
+from django.views.generic import UpdateView
 
+from cashier.households.models import HouseholdProfile
 from cashier.profiles.forms import EditProfileForm
 from cashier.profiles.models import UserProfile
 from cashier.users.forms import UserForm, UserLoginForm
@@ -74,3 +75,4 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	return redirect('home_view')
+

@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
-{% load current_tax %}
 
 {% block content %}
-    <h1>{% tax_admin %}</h1>
     <table>
             <tr>
                 <th>
@@ -36,7 +34,7 @@
             <button>Pay</button>
         </form>
     {% else %}
-        You have payed all your taxes :)
+        You have payed all salaries :)
     {% endif %}
 
 {% endblock %}
