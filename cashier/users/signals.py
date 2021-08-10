@@ -1,5 +1,4 @@
 from django.db.models.signals import post_save
-
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
 from django.dispatch import receiver

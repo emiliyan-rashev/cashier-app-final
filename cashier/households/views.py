@@ -1,13 +1,10 @@
-from django import forms
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, FormView
-
 from cashier.households.forms import UserApproveForm
 from cashier.households.models import HouseholdProfile
 from cashier.profiles.models import UserProfile
-from django.db import models
 
 def HouseholdProfileView(request,pk):
     household = HouseholdProfile.objects.get(pk=pk)

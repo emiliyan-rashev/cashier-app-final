@@ -69,7 +69,6 @@ def login_view(request):
 	context = {
 		'user_form' : form,
 	}
-
 	return render(request, 'login_view.html', context)
 
 def logout_view(request):

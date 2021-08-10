@@ -18,7 +18,12 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -43,7 +48,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="sqlite" />
+    <property name="DatabaseDriversLRU" value="sqlite&#10;postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -96,13 +101,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="cashier.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\andre\AppData\Local\Programs\Python\Python39\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
+      <option name="port" value="8080" />
       <option name="host" value="" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
@@ -112,6 +117,10 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Django server.cashier" />
+      <item itemvalue="Python.views" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.views" />
@@ -141,7 +150,8 @@
       <workItem from="1628272256543" duration="11269000" />
       <workItem from="1628330301924" duration="3167000" />
       <workItem from="1628333534388" duration="26977000" />
-      <workItem from="1628417786823" duration="23237000" />
+      <workItem from="1628417786823" duration="24175000" />
+      <workItem from="1628505891420" duration="7539000" />
     </task>
     <servers />
   </component>
@@ -153,10 +163,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="181" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1628363257999" />
-    <state x="72" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626726972572">
+    <state x="677" y="152" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628584636914">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="72" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1626726972572" />
+    <state x="677" y="152" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628584636914" />
     <state x="238" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1628333595358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -173,42 +183,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627997342712" />
-    <state width="1877" height="252" key="GridCell.Tab.0.bottom" timestamp="1628450478719">
+    <state width="1877" height="202" key="GridCell.Tab.0.bottom" timestamp="1628584666276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628450478719" />
-    <state width="1877" height="252" key="GridCell.Tab.0.center" timestamp="1628450478719">
+    <state width="1877" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
+    <state width="1877" height="202" key="GridCell.Tab.0.center" timestamp="1628584666276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628450478719" />
-    <state width="1877" height="252" key="GridCell.Tab.0.left" timestamp="1628450478718">
+    <state width="1877" height="202" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
+    <state width="1877" height="202" key="GridCell.Tab.0.left" timestamp="1628584666276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628450478718" />
-    <state width="1877" height="252" key="GridCell.Tab.0.right" timestamp="1628450478719">
+    <state width="1877" height="202" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
+    <state width="1877" height="202" key="GridCell.Tab.0.right" timestamp="1628584666276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628450478719" />
-    <state width="1877" height="252" key="GridCell.Tab.1.bottom" timestamp="1628450507674">
+    <state width="1877" height="202" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
+    <state width="1877" height="252" key="GridCell.Tab.1.bottom" timestamp="1628545467290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628450507674" />
-    <state width="1877" height="252" key="GridCell.Tab.1.center" timestamp="1628450507674">
+    <state width="1877" height="252" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
+    <state width="1877" height="252" key="GridCell.Tab.1.center" timestamp="1628545467290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628450507674" />
-    <state width="1877" height="252" key="GridCell.Tab.1.left" timestamp="1628450507674">
+    <state width="1877" height="252" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
+    <state width="1877" height="252" key="GridCell.Tab.1.left" timestamp="1628545467290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628450507674" />
-    <state width="1877" height="252" key="GridCell.Tab.1.right" timestamp="1628450507674">
+    <state width="1877" height="252" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
+    <state width="1877" height="252" key="GridCell.Tab.1.right" timestamp="1628545467290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628450507674" />
+    <state width="1877" height="252" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1628542581943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1628542581943" />
     <state x="463" y="165" key="SettingsEditor" timestamp="1628362415640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1628362415640" />
+    <state x="834" y="272" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1628542558290">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="834" y="272" key="com.intellij.database.view.ui.DbObjectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628542558290" />
     <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1627552845689">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -230,11 +248,6 @@
           <url>file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/contrib/auth/__init__.py</url>
           <line>83</line>
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cashier/households/views.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

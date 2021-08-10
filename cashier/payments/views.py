@@ -7,14 +7,12 @@ from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMo
     IndividualTaxesPayed
 from cashier.profiles.models import UserProfile
 
-
 class PaymentsAdminView(UpdateView):
     model = PaymentsAdmin
     fields = ('individual_monthly_tax', 'salaries')
     template_name = 'admin_payments.html'
     def get_object(self, queryset=None):
         return self.model.objects.first()
-
     success_url = reverse_lazy('home_view')
 
 class PaySalaries(UpdateView):
@@ -29,11 +27,9 @@ class PaySalaries(UpdateView):
             kwargs['form'] = self.get_form()
         tax_object = SalariesPerMonth.objects.first()
         tax_info = [(curr_field.name, curr_field.value_from_object(tax_object), curr_field.name not in self.fields) for curr_field in tax_object._meta.get_fields() if curr_field.name != 'id']
-
         if 'tax_info' not in kwargs:
             kwargs['tax_info'] = tax_info
         return super().get_context_data(**kwargs)
-
     template_name = 'salaries_payment.html'
     success_url = reverse_lazy('home_view')
 
