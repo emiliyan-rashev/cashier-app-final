@@ -2,7 +2,7 @@
 {% load hh_admin %}
 {% block content %}
 
-    <h1>Apartment {{ household.apartment }}'s profile</h1>
+    <h3>Apartment {{ household.apartment }}'s profile</h3>
     <b>Percent ideal parts: </b>
     {% if household.apartment_percent_ideal_parts %}
         {{ household.apartment_percent_ideal_parts }}%
@@ -21,26 +21,67 @@
     {% endif %}
     <br/>
 
-    <b>Members ({{ hh_members.count }}):</b>
+    <b>Admins of the household ({{ admins_in_hh.count }})</b>
         <ul>
-            {% for curr_member in hh_members %}
-                <li>
-                    {% if curr_member.is_household_admin %}
-                        <i>(HH admin)</i>
-                    {% endif %}
-                    {% if not curr_member.household %}
-                        (Not approved)
-                    {% endif %}
-                    {{ curr_member.first_name }}
-                    {% if not curr_member.is_household_admin and is_hh_admin and curr_member.household %}
-                        <a href="{% url 'hh_profile_remove' curr_member.user.id %}">Remove from household</a>
-                    {% endif %}
-                    {% if not curr_member.household and is_hh_admin %}
-                        <a href="{% url 'hh_approve_user' curr_member.user.id %}">Approve / Reject</a>
-                    {% endif %}
-                </li>
+            {% for curr_member in admins_in_hh %}
+                        <li>
+                        {{ curr_member.first_name }} {{ curr_member.last_name }} <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'hh_profile_remove' curr_member.user.id %}">{% if not curr_member.live_in_apartment %}Add to {% else %}Remove from {% endif %}household</a>
+                                <a href="{% url 'set_hh_admin' curr_member.user.id %}">Remove from household admins</a>
+                            {% endif %}
+                        </li>
             {% endfor %}
         </ul>
+
+    <b>Members living in apartment ({{ members_in_hh.count }})</b>
+        <ul>
+            {% for curr_member in members_in_hh %}
+                        <li>
+                        {% if curr_member.is_household_admin %}
+                            <i>(HH admin)</i>
+                        {% endif %}
+                        {{ curr_member.first_name }} {{ curr_member.last_name }} <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
+                        {% if not curr_member.is_household_admin and request.user.is_superuser %}
+                            <a href="{% url 'set_hh_admin' curr_member.user.id %}">Set as household admin</a>
+                        {% endif %}
+                        {% if not curr_member.is_household_admin %}
+                            {% if is_hh_admin or request.user.is_superuser %}
+                                <a href="{% url 'hh_profile_remove' curr_member.user.id %}">Remove from household</a>
+                            {% endif %}
+                        {% endif %}
+                        </li>
+            {% endfor %}
+        </ul>
+    <b>Not approved members ({{ not_approved_members.count }})</b>
+        <ul>
+        {% for curr_member in not_approved_members %}
+                <li>
+                    {{ curr_member.first_name }} {{ curr_member.last_name }} <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
+                {% if is_hh_admin or request.user.is_superuser %}
+                    <a href="{% url 'hh_approve_user' curr_member.user.id %}">Approve / Reject</a>
+                {% endif %}
+                </li>
+        {% endfor %}
+        </ul>
+    {% if is_hh_admin or request.user.is_superuser %}
+        <b>Not living in apartment ({{ not_living_in_hh.count }})</b>
+                <ul>
+        {% for curr_member in not_living_in_hh %}
+                <li>
+                {{ curr_member.first_name }} {{ curr_member.last_name }} <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
+                {% if not curr_member.is_household_admin and request.user.is_superuser %}
+                    <a href="{% url 'set_hh_admin' curr_member.user.id %}">Set as household admin</a>
+                {% endif %}
+                {% if not curr_member.is_household_admin %}
+                    {% if is_hh_admin or request.user.is_superuser %}
+                        <a href="{% url 'hh_profile_remove' curr_member.user.id %}">Add to household</a>
+                    {% endif %}
+                {% endif %}
+                </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
     {% if is_hh_admin %}
         <a href="{% url 'hh_profile_edit' household.apartment %}">Edit</a>
     {% endif %}

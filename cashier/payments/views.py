@@ -20,7 +20,7 @@ class PaySalaries(UpdateView):
     def get_object(self, queryset=None):
         return self.model.objects.get(pk=1)
     def get_form_class(self):
-        self.fields = [str(curr_field.name) for curr_field in self.model._meta.get_fields() if not curr_field.value_from_object(self.model.objects.get(pk=self.request.user.pk))]
+        self.fields = [str(curr_field.name) for curr_field in self.model._meta.get_fields() if not curr_field.value_from_object(self.model.objects.get(pk=1))]
         return model_forms.modelform_factory(self.model, fields=self.fields)
     def get_context_data(self, **kwargs):
         if 'form' not in kwargs:

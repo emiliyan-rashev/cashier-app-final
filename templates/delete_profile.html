@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    You are about to delete you profile!<br/>
+    You are about to delete {% if user == profile_owner %}your{% else %}<a href="{% url 'view_profile' profile_owner.id %}">{{ profile_owner }}</a>'s{% endif %} profile!<br/>
     <a type="button" href="{% url 'home_view' %}">Cancel</a>
     <form method="post">
     {% csrf_token %}

@@ -10,6 +10,8 @@
     {% if profile.user == request.user %}
         Receive email alerts: {{ profile.newsletter_agreement }}<br/>
         <a href="{% url 'edit_profile' %}">Edit profile</a>
-        <a href="{% url 'delete_profile' %}">Delete profile</a>
+    {% endif %}
+    {% if profile.user == request.user or request.user.is_superuser %}
+        <a href="{% url 'delete_profile' profile.user.id %}">Delete profile</a>
     {% endif %}
 {% endblock %}

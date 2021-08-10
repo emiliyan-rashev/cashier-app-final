@@ -19,4 +19,7 @@ def apartment_changed(instance, **kwargs):
         form.household = None
         form.is_household_admin = False
         form.save()
+    if not form.household and form.is_household_admin:
+        form.is_household_admin = False
+        form.save()
 

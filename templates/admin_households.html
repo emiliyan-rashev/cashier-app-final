@@ -12,11 +12,14 @@
         <th>
             Balance
         </th>
+        <th>
+            Pending users
+        </th>
     </tr>
         {% for curr_hh in households %}
             <tr>
                 <td>
-                    <a href="">{{ curr_hh.apartment }}</a>
+                    <a href="{% url 'hh_profile' curr_hh.apartment %}">{{ curr_hh.apartment }}</a>
                 </td>
                 <td>
                     {{ curr_hh.apartment_percent_ideal_parts }}

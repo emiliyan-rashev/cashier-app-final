@@ -8,5 +8,7 @@ class HouseholdProfileForm(forms.ModelForm):
         fields = ('apartment_percent_ideal_parts',)
 
 class UserApproveForm(forms.Form):
-    approve = forms.BooleanField(required=False)
+    CHOICES = [('Approve', 'Approve'),
+               ('Reject', 'Reject')]
+    approval = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
 

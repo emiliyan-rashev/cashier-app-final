@@ -23,6 +23,51 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="households_householdprofile: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
     </expand>
     <select />
   </component>
@@ -32,8 +77,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -151,7 +196,7 @@
       <workItem from="1628330301924" duration="3167000" />
       <workItem from="1628333534388" duration="26977000" />
       <workItem from="1628417786823" duration="24175000" />
-      <workItem from="1628505891420" duration="7539000" />
+      <workItem from="1628505891420" duration="34623000" />
     </task>
     <servers />
   </component>
@@ -175,46 +220,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="206" y="173" key="#hh_admin/0.0.1920.1040@0.0.1920.1040" timestamp="1627588104327" />
-    <state x="674" y="272" key="#xdebugger.XInspectDialog" timestamp="1627900498780">
+    <state x="674" y="272" key="#xdebugger.XInspectDialog" timestamp="1628632669384">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="674" y="272" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627900498780" />
+    <state x="674" y="272" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628632669384" />
     <state x="260" y="277" key="FileChooserDialogImpl" timestamp="1627997342712">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627997342712" />
-    <state width="1877" height="202" key="GridCell.Tab.0.bottom" timestamp="1628584666276">
+    <state width="1877" height="384" key="GridCell.Tab.0.bottom" timestamp="1628632380392">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
-    <state width="1877" height="202" key="GridCell.Tab.0.center" timestamp="1628584666276">
+    <state width="1877" height="384" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628632380392" />
+    <state width="1877" height="384" key="GridCell.Tab.0.center" timestamp="1628632380391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="202" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
-    <state width="1877" height="202" key="GridCell.Tab.0.left" timestamp="1628584666276">
+    <state width="1877" height="384" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628632380391" />
+    <state width="1877" height="384" key="GridCell.Tab.0.left" timestamp="1628632380391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="202" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
-    <state width="1877" height="202" key="GridCell.Tab.0.right" timestamp="1628584666276">
+    <state width="1877" height="384" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628632380391" />
+    <state width="1877" height="384" key="GridCell.Tab.0.right" timestamp="1628632380391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="202" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628584666276" />
-    <state width="1877" height="252" key="GridCell.Tab.1.bottom" timestamp="1628545467290">
+    <state width="1877" height="384" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628632380391" />
+    <state width="1877" height="384" key="GridCell.Tab.1.bottom" timestamp="1628632388393">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
-    <state width="1877" height="252" key="GridCell.Tab.1.center" timestamp="1628545467290">
+    <state width="1877" height="384" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628632388393" />
+    <state width="1877" height="384" key="GridCell.Tab.1.center" timestamp="1628632388393">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
-    <state width="1877" height="252" key="GridCell.Tab.1.left" timestamp="1628545467290">
+    <state width="1877" height="384" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628632388393" />
+    <state width="1877" height="384" key="GridCell.Tab.1.left" timestamp="1628632388393">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
-    <state width="1877" height="252" key="GridCell.Tab.1.right" timestamp="1628545467290">
+    <state width="1877" height="384" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628632388393" />
+    <state width="1877" height="384" key="GridCell.Tab.1.right" timestamp="1628632388393">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="252" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628545467290" />
+    <state width="1877" height="384" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628632388393" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1628542581943">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -223,6 +268,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1628362415640" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1628623205481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1628623205481" />
     <state x="834" y="272" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1628542558290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -231,10 +280,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627552845689" />
-    <state x="524" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1627555964957">
+    <state x="524" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1628626739740">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="524" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1627555964957" />
+    <state x="524" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1628626739740" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1628598320217">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628598320217" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -258,6 +311,11 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Python.DjangoServer">
+        <watch expression="not_approved_members.model.user_id" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cashier$views.coverage" NAME="views Coverage Results" MODIFIED="1626724400361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cashier/users" />
