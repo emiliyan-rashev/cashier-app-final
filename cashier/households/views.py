@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -7,6 +8,7 @@ from django.views.generic.base import View
 
 from cashier.households.forms import UserApproveForm
 from cashier.households.models import HouseholdProfile
+from cashier.mixins.mixins import SuperUserRequiredMixin, HouseholdAdminRequiredMixin, OwnerOrSuperUserRequiredMixin
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
 
@@ -32,21 +34,24 @@ def household_profile_view(request,pk):
 	}
     return render(request, 'hh_profile_view.html', context)
 
-class HouseholdEditProfileView(UpdateView):
+#Mixins done
+class HouseholdEditProfileView(HouseholdAdminRequiredMixin, UpdateView):
     model = HouseholdProfile
     fields = ('apartment_percent_ideal_parts',)
     template_name = 'hh_profile_edit.html'
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})
 
-class HouseholdRemoveUser(UpdateView):
+#Mixins done
+class HouseholdRemoveUser(HouseholdAdminRequiredMixin, UpdateView):
     model = UserProfile
     fields = ('live_in_apartment',)
     template_name = 'hh_remove_user.html'
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
 
-class HouseholdApproveUser(FormView):
+#Mixins done
+class HouseholdApproveUser(HouseholdAdminRequiredMixin, FormView):
     form_class = UserApproveForm
 
     def get_success_url(self):
@@ -100,7 +105,8 @@ def household_superuser_view(request):
     }
     return render(request, 'admin_households.html', context)
 
-class SetHouseholdAdmins(UpdateView):
+#Mixins done
+class SetHouseholdAdmins(SuperUserRequiredMixin, UpdateView):
     model = UserProfile
     fields = ('is_household_admin',)
     template_name = 'hh_remove_user.html' #Would be better to rename this file

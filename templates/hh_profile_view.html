@@ -82,7 +82,7 @@
         {% endfor %}
         </ul>
     {% endif %}
-    {% if is_hh_admin %}
+    {% if is_hh_admin or request.user.is_superuser %}
         <a href="{% url 'hh_profile_edit' household.apartment %}">Edit</a>
     {% endif %}
 {% endblock %}

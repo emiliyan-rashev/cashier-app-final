@@ -5,7 +5,7 @@
     <h4>Note that the changes will apply from the next month.</h4>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <button>Save</button>
     </form>
     <a href="{% url 'salaries_payment' %}">Pay salaries</a>

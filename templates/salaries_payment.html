@@ -30,7 +30,7 @@
     {% if form.fields %}
         <form method="post">
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_p }}
             <button>Pay</button>
         </form>
     {% else %}

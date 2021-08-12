@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="{% url 'make_payment' %}">Individual payments</a>
+    <a href="{% url 'make_payment' request.user.id %}">Individual payments</a>
     {% if is_hh_admin %}
         <a href="">Household payments</a>#TODO!!!!!!!!!!!!!!!!!
     {% endif %}

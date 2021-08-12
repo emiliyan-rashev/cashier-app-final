@@ -1,12 +1,13 @@
-from django.urls import path, include
-from cashier.users.views import home_view, contact_view, register_view, login_view, logout_view
+from django.contrib.auth.views import LogoutView
+from django.urls import path
+from cashier.users.views import HomeView, ContactView, RegisterView, UserLoginView
 
 urlpatterns = [
-	path('', home_view, name = 'home_view'),
-	path('about/', contact_view, name = 'contact_view'),
-	path('register/', register_view, name = 'register_view'),
-	path('login/', login_view, name = 'login_view'),
-	path('logout/', logout_view, name = 'logout_view'),
+	path('', HomeView.as_view(), name = 'home_view'),
+	path('about/', ContactView.as_view(), name = 'contact_view'),
+	path('register/', RegisterView.as_view(), name = 'register_view'),
+	path('login/', UserLoginView.as_view(), name = 'login_view'),
+	path('logout/', LogoutView.as_view(), name = 'logout_view'),
 ]
 
 import cashier.users.signals

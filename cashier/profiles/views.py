@@ -1,42 +1,54 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
-from cashier.profiles.forms import EditProfileForm
+from django.views.generic import UpdateView, TemplateView, FormView
+from cashier.mixins.mixins import OwnerOrSuperUserRequiredMixin
+from cashier.profiles.forms import EditProfileForm, DeleteProfileForm
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
-from cashier.users.views import logout_view
 
-def ViewProfileView(request,pk):
-    profile = UserProfile.objects.get(pk=pk)
-    context = {
-        'profile' : profile,
-    }
-    return render(request, 'view_profile.html', context)
+class ViewProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'view_profile.html'
+    def get(self, request, *args, **kwargs):
+        profile = UserProfile.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+        context = {
+            'profile' : profile,
+        }
+        return self.render_to_response(context)
 
-class EditProfileView(UpdateView):
+class EditProfileView(OwnerOrSuperUserRequiredMixin, UpdateView):
     model = UserProfile
     template_name = 'edit_profile.html'
     form_class = EditProfileForm
-    def get_object(self, queryset=None):
-        return self.model.objects.get(user=self.request.user)
     success_url = reverse_lazy('home_view')
 
-def confirm_delete(request,pk):
-    if request.method == 'POST':
-        return DeleteProfileView(request,pk)
-    context = {
-        'profile_owner' : cashierUser.objects.get(pk=pk),
-    }
-    return render(request, 'delete_profile.html', context)
+class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
+    form_class = DeleteProfileForm
+    success_url = reverse_lazy('home_view')
+    template_name = 'delete_profile.html'
 
-def DeleteProfileView(request,pk):
-    user = cashierUser.objects.get(pk=pk)
-    user.is_active = False
-    profile = UserProfile.objects.get(pk=pk)
-    profile.live_in_apartment = False
-    user.save()
-    profile.save()
-    if user == request.user:
-        return logout_view(request)
-    else:
-        return redirect('home_view')
+    def get_context_data(self, **kwargs):
+        kwargs.setdefault('view', self)
+        profile_owner = cashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+        self.extra_context = {'profile_owner' : profile_owner}
+        kwargs.update(self.extra_context)
+        if 'form' not in kwargs:
+            kwargs['form'] = self.get_form()
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            if form.cleaned_data['result'] == 'Delete':
+                user = cashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+                user.is_active = False
+                profile = UserProfile.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+                profile.live_in_apartment = False
+                user.save()
+                profile.save()
+                if user == request.user:
+                    return LogoutView.as_view()
+            return HttpResponseRedirect(reverse_lazy('home_view'))
+        else:
+            return self.form_invalid(form)

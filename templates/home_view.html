@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if error_message %}
+        <span style="color: red">{{ error_message }}</span><br/><br/>
+    {% endif %}
+
+
     TODO: Fix the salaries payment logic (should be the same as the one in Individual payments)<br/>
     TODO: Add recent news section<br/>
     TODO: Add alert for tax changes (or add it in recent news)<br/>
