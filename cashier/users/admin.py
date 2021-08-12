@@ -1,7 +1,8 @@
 from django.contrib import admin
 from cashier.households.models import HouseholdProfile
+from cashier.news.models import News, Comment
 from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMonth, SalariesPerMonth, \
-    IndividualTaxesPayed, SalariesPayment
+    IndividualTaxesPayed, SalariesPayment, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
 
@@ -20,3 +21,6 @@ admin.site.register(IndividualPayment)
 admin.site.register(IndividualTaxesPayed)
 admin.site.register(SalariesPerMonth)
 admin.site.register(SalariesPayment)
+admin.site.register(SalariesPayedPerMonth)
+admin.site.register(News)
+admin.site.register(Comment)

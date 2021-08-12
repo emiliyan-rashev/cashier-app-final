@@ -10,10 +10,10 @@
                     Tax
                 </th>
                 <th>
-                    Payed
+                    Paid
                 </th>
             </tr>
-        {% for curr_month, curr_tax, is_payed in tax_info %}
+        {% for curr_month, curr_tax, is_paid in tax_info %}
         <tr>
             <td>
                 {{ curr_month }}
@@ -22,7 +22,7 @@
                 {{ curr_tax }}
             </td>
             <td>
-                {{ is_payed }}
+                {{ is_paid }}
             </td>
         </tr>
         {% endfor %}
@@ -34,7 +34,7 @@
             <button>Pay</button>
         </form>
     {% else %}
-        You have payed all salaries :)
+        You have paid all salaries :)
     {% endif %}
 
 {% endblock %}

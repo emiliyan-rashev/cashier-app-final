@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cashier.profiles',
     'cashier.households',
     'cashier.payments',
+    'cashier.news',
 ]
 
 MIDDLEWARE = [
@@ -84,14 +85,13 @@ WSGI_APPLICATION = 'cashier.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
+        'NAME': 'andre',
         'USER': 'emo',
         'PASSWORD': '12345qwe',
         'HOST': '127.0.0.1',
         'PORT': '8000',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

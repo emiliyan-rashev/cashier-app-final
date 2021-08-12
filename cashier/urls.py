@@ -23,4 +23,5 @@ urlpatterns = [
     path('profile/', include('cashier.profiles.urls')),
     path('household/', include('cashier.households.urls')),
     path('payments/', include('cashier.payments.urls')),
+    path('news/', include('cashier.news.urls'))
 ]

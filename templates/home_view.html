@@ -4,11 +4,31 @@
     {% if error_message %}
         <span style="color: red">{{ error_message }}</span><br/><br/>
     {% endif %}
-
-
-    TODO: Fix the salaries payment logic (should be the same as the one in Individual payments)<br/>
     TODO: Add recent news section<br/>
     TODO: Add alert for tax changes (or add it in recent news)<br/>
-    TODO: Add alert for unapproved users
+
+    {% if news %}
+        <br/><br/>
+        {% for curr_news in news %}
+            <b>{{ curr_news.title }} <a href="{% url 'comment_news_view' curr_news.id %}">See more...</a></b><br/>
+        {% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    {% endif %}
 
 {% endblock %}

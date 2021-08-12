@@ -14,6 +14,7 @@ class HomeView(TemplateView):
 	template_name = 'home_view.html'
 
 class ContactView(TemplateView):
+	#This call to the model caused trouble. In a migration should be omitted by prepending "0 and " to the if statement if no solution available at the moment
 	if UserModel.objects.filter(is_superuser=True) and UserProfile.objects.get(
 			pk=UserModel.objects.filter(is_superuser=True).first().id).first_name != '':
 		first_superuser_profile = UserProfile.objects.get(pk=UserModel.objects.filter(is_superuser=True).first().id)

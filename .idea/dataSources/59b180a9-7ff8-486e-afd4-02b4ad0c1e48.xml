@@ -11,22 +11,22 @@
       <Owner>postgres</Owner>
       <IntrospectionStateNumber>580</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|16608|16610|1
+      <Relations>sequence|table|16394|16396|1
+sequence|table|16405|16407|1
+sequence|table|16415|16417|1
+sequence|table|16423|16425|1
+sequence|table|16433|16435|1
+sequence|table|16608|16610|1
+sequence|table|16477|16479|1
+sequence|table|16485|16487|1
+sequence|table|16522|16524|1
+sequence|table|16467|16469|1
 sequence|table|16546|16548|1
 sequence|table|16554|16556|1
 sequence|table|16562|16564|1
 sequence|table|16572|16574|1
 sequence|table|16580|16582|1
 sequence|table|16588|16590|1
-sequence|table|16394|16396|1
-sequence|table|16477|16479|1
-sequence|table|16485|16487|1
-sequence|table|16522|16524|1
-sequence|table|16405|16407|1
-sequence|table|16415|16417|1
-sequence|table|16423|16425|1
-sequence|table|16433|16435|1
-sequence|table|16467|16469|1
 </Relations>
     </database>
     <role id="3" parent="1" name="emo">

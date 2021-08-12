@@ -1,18 +1,17 @@
-from django.db.models.signals import post_save, pre_save, pre_init, post_init
+from django.db.models.signals import post_save, pre_save, pre_init
 from django.dispatch import receiver
-import datetime
-from cashier.payments.models import IndividualPayment, PaymentsAdmin, TaxesPerMonth, SalariesPerMonth, SalariesPayment, \
-    IndividualTaxesPayed
+from cashier.payments.models import IndividualPayment, PaymentsAdmin, TaxesPerMonth, SalariesPerMonth, SalariesPayment, IndividualTaxesPayed, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
-
+import datetime
 
 @receiver(post_save, sender=UserProfile)
 def profile_updated(instance, **kwargs):
-    payment_profile = IndividualPayment(pk=instance.user_id)
-    payment_profile.save()
-    tax_profile = IndividualTaxesPayed(pk=instance.user_id)
-    tax_profile.save()
+    if not IndividualPayment.objects.filter(pk=instance.user_id):
+        payment_profile = IndividualPayment(pk=instance.user_id)
+        payment_profile.save()
+        tax_profile = IndividualTaxesPayed(pk=instance.user_id)
+        tax_profile.save()
 
 @receiver(post_save, sender=cashierUser)
 def super_user_created(instance, created, **kwargs):
@@ -36,6 +35,11 @@ def super_user_created(instance, created, **kwargs):
             taxes_per_month = SalariesPayment(pk=1)
             taxes_per_month.save()
 
+    if created and not SalariesPayedPerMonth.objects.exists():
+        if cashierUser.objects.get(id=instance.id).is_superuser:
+            taxes_per_month = SalariesPayedPerMonth(pk=1)
+            taxes_per_month.save()
+
 @receiver(post_save, sender=PaymentsAdmin)
 def admin_payments_updated(**kwargs):
     month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -46,7 +50,7 @@ def admin_payments_updated(**kwargs):
     SalariesPerMonth.objects.filter(pk=1).update(**{str(curr_month) : curr_salaries for curr_month in month_keys[curr_month:len(month_keys)]})
 
 @receiver(pre_save, sender=IndividualPayment)
-def individiual_taxes_payed(instance, **kwargs):
+def individual_taxes_payed(instance, **kwargs):
     if IndividualPayment.objects.filter(id=instance.id):
         month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         form = IndividualPayment.objects.get(id=instance.id)
@@ -65,3 +69,23 @@ def get_available_payments(**kwargs):
         taxes_payed_per_month = {curr_field.name : curr_field.value_from_object(payed_object) for curr_field in payed_object._meta.get_fields() if curr_field.name in month_keys}
         taxes_needed_per_month = {curr_field.name : curr_field.value_from_object(tax_object) for curr_field in tax_object._meta.get_fields() if curr_field.name in month_keys}
         IndividualPayment.objects.filter(pk=curr_id).update(**{str(curr_month) : taxes_needed_per_month[curr_month] <= taxes_payed_per_month[curr_month] for curr_month in month_keys})
+
+@receiver(pre_save, sender=SalariesPayment)
+def salaries_payed(instance, **kwargs):
+    if SalariesPayment.objects.exists():
+        month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        form = SalariesPayment.objects.first()
+        salaries_object = SalariesPerMonth.objects.first()
+        salaries_needed_per_month = {curr_field.name : curr_field.value_from_object(salaries_object) for curr_field in salaries_object._meta.get_fields() if curr_field.name in month_keys}
+        months_payed = [curr_field.name for curr_field in form._meta.get_fields() if curr_field.name != 'id' and curr_field.value_from_object(instance) == True and curr_field.value_from_object(form) == False]
+        SalariesPayedPerMonth.objects.filter(pk=1).update(**{str(curr_month) : salaries_needed_per_month[curr_month] for curr_month in months_payed})
+
+@receiver(pre_init, sender=SalariesPayment)
+def get_available_salaries(**kwargs):
+    if SalariesPayedPerMonth.objects.exists():
+        month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        salaries_object = SalariesPerMonth.objects.first()
+        payed_object = SalariesPayedPerMonth.objects.first()
+        slaries_payed_per_month = {curr_field.name : curr_field.value_from_object(payed_object) for curr_field in payed_object._meta.get_fields() if curr_field.name in month_keys}
+        salaries_needed_per_month = {curr_field.name : curr_field.value_from_object(salaries_object) for curr_field in salaries_object._meta.get_fields() if curr_field.name in month_keys}
+        SalariesPayment.objects.filter(pk=1).update(**{str(curr_month) : salaries_needed_per_month[curr_month] <= slaries_payed_per_month[curr_month] for curr_month in month_keys})

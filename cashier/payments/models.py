@@ -39,14 +39,19 @@ class PaymentsAdmin(models.Model):
 class TaxesPerMonth(MonthsIntegerFields, models.Model):
     pass
 
-class SalariesPerMonth(MonthsIntegerFields, models.Model):
-    pass
-
 class IndividualPayment(MonthsBooleanFields, models.Model):
     pass
 
 class IndividualTaxesPayed(MonthsIntegerFields, models.Model):
     pass
 
+class SalariesPerMonth(MonthsIntegerFields, models.Model):
+    pass
+
+class SalariesPayedPerMonth(MonthsIntegerFields, models.Model):
+    pass
+
 class SalariesPayment(MonthsBooleanFields, models.Model):
     pass
+
+

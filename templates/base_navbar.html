@@ -1,7 +1,8 @@
 {% load hh_admin %}
 {% load pending_members_alert %}
 <nav>
-	<a href="/">Home</a>
+	<a href="{% url 'home_view' %}">Home</a>
+    <a href="{% url 'all_news_view' %}">News</a>
 	<a href="#">Reports</a>
 	<a href="{% url 'contact_view' %}">Contacts</a>
 
@@ -11,7 +12,7 @@
 	{% endif %}
 	{% if user.is_authenticated %}
 	    <a href="{% url 'logout_view' %}">Logout</a>
-        <a href="{% url 'view_profile' user.id %}">{{ user.username }}</a>
+        <a href="{% url 'view_profile' user.id %}">Profile</a>
         {% hh_admin %}
         <a href="{% url 'payment_types' %}">Payments</a>
     {% if user.is_superuser %}
