@@ -24,7 +24,9 @@
     {% endif %}
 	{% endif %}
 </nav>
+
 {% if request.user.is_authenticated %}
+    Logged in as <b>{{ request.user }}</b>
     {% profile_is_complete %}
 {% endif %}
 {% pending_members_alert %}
