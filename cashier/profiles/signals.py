@@ -10,6 +10,7 @@ def profile_updated(instance, **kwargs):
     if not cashierUser.objects.get(pk=instance.id).is_active:
         user_profile = UserProfile.objects.get(pk=instance.id)
         user_profile.live_in_apartment = False
+        user_profile.is_household_admin = False
         user_profile.save()
 
 @receiver(post_save, sender=UserProfile)

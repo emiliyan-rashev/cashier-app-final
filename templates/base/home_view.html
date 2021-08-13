@@ -8,6 +8,7 @@
 
     {% if news == None %}
     <h2>This is the cashier app</h2>
+    <h4>Tax payments made easy</h4>
     {% endif %}
 
     {% if request.user.is_superuser and news.count >= 0 %}
