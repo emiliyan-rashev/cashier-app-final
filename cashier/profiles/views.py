@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
+from django.db.models import QuerySet, Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView, FormView, ListView
@@ -62,3 +63,13 @@ class ShowAllUsersView(SuperUserRequiredMixin, ListView):
     paginate_by = 10
     context_object_name = 'all_users'
     template_name = 'users/list_all_users.html'
+
+    def get_queryset(self):
+        queryset = self.model._default_manager.filter(~Q(apartment=0))
+        ordering = self.get_ordering()
+        if ordering:
+            if isinstance(ordering, str):
+                ordering = (ordering,)
+            queryset = queryset.order_by(*ordering)
+
+        return queryset
