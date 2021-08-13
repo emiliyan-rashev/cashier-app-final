@@ -18,7 +18,6 @@ class HomeView(TemplateView):
 class ContactView(TemplateView):
 	template_name = 'base/contact_view.html'
 
-
 class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 	def get(self, request):
 		user_form = UserForm()
@@ -46,6 +45,8 @@ class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 			login(request, user)
 			return redirect('home_view')
 		else:
+			self.apply_bootstrap_classes(user_form)
+			self.apply_bootstrap_classes(profile_form)
 			context = {
 				'user_form': user_form,
 				'profile_form': profile_form,
