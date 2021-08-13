@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <table>
+            <tr>
+                <th style="padding: 5px;">
+                    Month
+                </th>
+                <th style="padding: 5px;">
+                    Tax
+                </th>
+                <th style="padding: 5px;">
+                    Paid
+                </th>
+            </tr>
+        {% for curr_month, curr_tax, is_paid in tax_info %}
+        <tr>
+            <td style="padding: 5px;">
+                {{ curr_month }}
+            </td>
+            <td style="padding: 5px;">
+                {{ curr_tax }}
+            </td>
+            <td style="padding: 5px;">
+                {{ is_paid }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if form.fields %}
+        <form method="post" style="padding: 5px;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn-primary">Pay</button>
+        </form>
+    {% else %}
+        You have paid all salaries :)
+    {% endif %}
+
+{% endblock %}

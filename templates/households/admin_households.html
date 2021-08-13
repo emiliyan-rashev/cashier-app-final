@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if households %}
+    <table class="default_table">
+    <tr>
+        <th style="padding: 5px;">
+            Apartment
+        </th>
+        <th style="padding: 5px;">
+            % ideal parts
+        </th>
+    </tr>
+        {% for curr_hh in households %}
+            <tr>
+                <td style="padding: 5px;">
+                    <a href="{% url 'hh_profile' curr_hh.apartment %}">{{ curr_hh.apartment }}</a>
+                </td>
+                <td style="padding: 5px;">
+                    {{ curr_hh.apartment_percent_ideal_parts }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3>The are no households yet.</h3>
+    {% endif %}
+{% endblock %}

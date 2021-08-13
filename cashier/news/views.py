@@ -1,24 +1,31 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DeleteView
+from django.views.generic import ListView, DeleteView, CreateView
 
-from cashier.mixins.mixins import OwnerOrSuperUserRequiredMixin
+from cashier.mixins.form_bootstrap import BootStrapFormMixin
+from cashier.mixins.mixins import SuperUserRequiredMixin
 from cashier.news.forms import CommentForm
 from cashier.news.models import News, Comment
-
 
 class NewsListView(LoginRequiredMixin, ListView):
     model = News
     ordering = ['-pk']
-    template_name = 'home_view.html'
+    template_name = 'base/home_view.html'
     context_object_name = 'news'
     paginate_by = 5
 
-class CommentNewsView(LoginRequiredMixin, ListView):
+class CreateNews(SuperUserRequiredMixin, BootStrapFormMixin, CreateView):
+    model = News
+    fields = '__all__'
+    template_name = 'news/create_news.html'
+    context_object_name = 'form'
+    success_url = reverse_lazy('all_news_view')
+
+class CommentNewsView(LoginRequiredMixin, BootStrapFormMixin, ListView):
     model = Comment
     ordering = ['-pk']
-    template_name = 'news_details.html'
+    template_name = 'news/news_details.html'
     context_object_name = 'all_comments'
     paginate_by = 5
     def get(self, request, *args, **kwargs):
@@ -27,6 +34,7 @@ class CommentNewsView(LoginRequiredMixin, ListView):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
         context['form'] = CommentForm()
+        self.apply_bootstrap_classes(context['form'])
         context['news_object'] = news_object
         return self.render_to_response(context)
     def post(self, request, pk):
@@ -53,4 +61,4 @@ class DeleteCommentView(DeleteView):
         self.success_url = reverse_lazy('comment_news_view', kwargs={'pk': self.object.News.id})
         if self.success_url:
             return self.success_url.format(**self.object.__dict__)
-    template_name = 'delete_comment.html'
+    template_name = 'news/delete_comment.html'

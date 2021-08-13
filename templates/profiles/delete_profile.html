@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    You are about to delete {% if user == profile_owner %}your{% else %}<a href="{% url 'view_profile' profile_owner.id %}">{{ profile_owner }}</a>'s{% endif %} profile!<br/>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn-primary">Submit</button>
+    </form>
+{% endblock %}

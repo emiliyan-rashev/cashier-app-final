@@ -1,5 +1,7 @@
 from django.db.models.signals import post_save, pre_save, pre_init
 from django.dispatch import receiver
+
+from cashier.news.models import News
 from cashier.payments.models import IndividualPayment, PaymentsAdmin, TaxesPerMonth, SalariesPerMonth, SalariesPayment, IndividualTaxesPayed, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
@@ -89,3 +91,19 @@ def get_available_salaries(**kwargs):
         slaries_payed_per_month = {curr_field.name : curr_field.value_from_object(payed_object) for curr_field in payed_object._meta.get_fields() if curr_field.name in month_keys}
         salaries_needed_per_month = {curr_field.name : curr_field.value_from_object(salaries_object) for curr_field in salaries_object._meta.get_fields() if curr_field.name in month_keys}
         SalariesPayment.objects.filter(pk=1).update(**{str(curr_month) : salaries_needed_per_month[curr_month] <= slaries_payed_per_month[curr_month] for curr_month in month_keys})
+
+@receiver(pre_save, sender=PaymentsAdmin)
+def get_available_salaries(instance, **kwargs):
+    if PaymentsAdmin.objects.exists():
+        new_tax = instance.individual_monthly_tax
+        previous_tax = PaymentsAdmin.objects.first().individual_monthly_tax
+        previous_salary = PaymentsAdmin.objects.first().salaries
+        new_salary = instance.salaries
+        if new_tax != previous_tax:
+            notification = News(title='Tax changed', content=f'The tax has changed from {previous_tax} to {new_tax}')
+            notification.save()
+        if new_salary != previous_salary:
+            notification = News(title='Salaries changed', content=f'The salaries have changed from {previous_salary} to {new_salary}')
+            notification.save()
+
+

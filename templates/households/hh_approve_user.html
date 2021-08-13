@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    Do you approve <a href="{% url 'view_profile' curr_user.id %}">{{ curr_user }}</a> for {{ curr_apt }} apartment?
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button class="btn-primary">Save</button>
+</form>
+{% endblock %}

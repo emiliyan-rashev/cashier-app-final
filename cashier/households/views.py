@@ -6,7 +6,8 @@ from django.views.generic import UpdateView, FormView
 from django.views.generic.base import TemplateView
 from cashier.households.forms import UserApproveForm
 from cashier.households.models import HouseholdProfile
-from cashier.mixins.mixins import SuperUserRequiredMixin, HouseholdAdminRequiredMixin
+from cashier.mixins.form_bootstrap import BootStrapFormMixin
+from cashier.mixins.mixins import SuperUserRequiredMixin, HouseholdAdminRequiredMixin, HouseholdAdminOfUserRequiredMixin
 from cashier.profiles.models import UserProfile
 from cashier.users.models import cashierUser
 
@@ -15,7 +16,7 @@ def inactive_users():
     return cashierUser.objects.filter(is_active=False)
 
 class HouseholdProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'hh_profile_view.html'
+    template_name = 'households/hh_profile_view.html'
     def get_context_data(self, **kwargs):
         pk_from_url = self.request.resolver_match.kwargs['pk']
         household = HouseholdProfile.objects.get(pk=pk_from_url)
@@ -36,28 +37,39 @@ class HouseholdProfileView(LoginRequiredMixin, TemplateView):
         kwargs.update(self.extra_context)
         return kwargs
 
-class HouseholdEditProfileView(HouseholdAdminRequiredMixin, UpdateView):
+class HouseholdEditProfileView(HouseholdAdminRequiredMixin, BootStrapFormMixin, UpdateView):
     model = HouseholdProfile
     fields = ('apartment_percent_ideal_parts',)
-    template_name = 'hh_profile_edit.html'
+    template_name = 'households/hh_profile_edit.html'
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})
 
-class HouseholdRemoveUser(HouseholdAdminRequiredMixin, UpdateView):
+class HouseholdRemoveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = UserProfile
     fields = ('live_in_apartment',)
-    template_name = 'hh_remove_user.html'
+    template_name = 'households/hh_remove_user.html'
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
 
-class HouseholdApproveUser(HouseholdAdminRequiredMixin, FormView):
+class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin, FormView):
     form_class = UserApproveForm
 
     def get_success_url(self):
         pk_from_url = self.request.resolver_match.kwargs['pk']
         self.object = UserProfile.objects.get(pk=pk_from_url)
         return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
-
+    def get_context_data(self, **kwargs):
+        kwargs.setdefault('view', self)
+        pk_from_url = self.request.resolver_match.kwargs['pk']
+        self.object = UserProfile.objects.get(pk=pk_from_url)
+        self.extra_context = {
+            'curr_user' : self.object.user,
+            'curr_apt' : self.object.apartment,
+            'form' : self.get_form(),
+        }
+        if self.extra_context is not None:
+            kwargs.update(self.extra_context)
+        return kwargs
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
@@ -76,10 +88,10 @@ class HouseholdApproveUser(HouseholdAdminRequiredMixin, FormView):
             return HttpResponseRedirect(success_url)
         else:
             return self.form_invalid(form)
-    template_name = 'hh_remove_user.html'
+    template_name = 'households/hh_approve_user.html'
 
 class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
-    template_name = 'hh_all_pending_members.html'
+    template_name = 'households/hh_all_pending_members.html'
     def get_context_data(self, **kwargs):
         not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=0),~Q(user__in=inactive_users()))
         existing_apartments = HouseholdProfile.objects.all().values_list('apartment', flat=True)
@@ -91,7 +103,7 @@ class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
         return kwargs
 
 class UrgentPendingMembersView(SuperUserRequiredMixin, TemplateView):
-    template_name = 'hh_urgent_pending_members.html'
+    template_name = 'households/hh_urgent_pending_members.html'
     def get_context_data(self, **kwargs):
         apartments_with_admins = UserProfile.objects.filter(Q(is_household_admin=True), ~Q(
             apartment=UserProfile.objects.get(pk=self.request.user.id).apartment), ~Q(user__in=inactive_users())).values_list('apartment',flat=True)
@@ -105,18 +117,24 @@ class UrgentPendingMembersView(SuperUserRequiredMixin, TemplateView):
         return kwargs
 
 class HouseholdSuperuserView(SuperUserRequiredMixin, TemplateView):
-    template_name = 'admin_households.html'
-    extra_context = {'households' : HouseholdProfile.objects.all()}
+    template_name = 'households/admin_households.html'
+    def get_context_data(self, **kwargs):
+        households = HouseholdProfile.objects.all()
+        self.extra_context = {
+            'households': households,
+        }
+        kwargs.update(self.extra_context)
+        return kwargs
 
-class SetHouseholdAdmins(HouseholdAdminRequiredMixin, UpdateView):
+class SetHouseholdAdmins(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = UserProfile
     fields = ('is_household_admin',)
-    template_name = 'hh_remove_user.html' #Would be better to rename this file
+    template_name = 'households/hh_remove_user.html'  #Would be better to rename this file
     def get_success_url(self):
         return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
 
 class HouseHoldMemberPaymentsView(HouseholdAdminRequiredMixin, TemplateView):
-    template_name = 'hh_member_payments.html'
+    template_name = 'payments/hh_member_payments.html'
     def get_context_data(self, **kwargs):
         pk_from_url = self.request.resolver_match.kwargs['pk']
         household = HouseholdProfile.objects.get(pk=pk_from_url)

@@ -10,5 +10,5 @@ class HouseholdProfileForm(forms.ModelForm):
 class UserApproveForm(forms.Form):
     CHOICES = [('Approve', 'Approve'),
                ('Reject', 'Reject')]
-    approval = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
+    approval = forms.ChoiceField(label='', choices=CHOICES, widget=forms.RadioSelect)
 

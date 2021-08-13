@@ -7,7 +7,7 @@ from cashier.profiles.models import UserProfile
 
 register = template.Library()
 
-@register.inclusion_tag('hh_pending_members_alert.html', takes_context=True)
+@register.inclusion_tag('households/hh_pending_members_alert.html', takes_context=True)
 def pending_members_alert(context):
     if context.request.user.is_authenticated:
         user_profile = UserProfile.objects.get(pk=context.request.user.id)

@@ -1,0 +1,3 @@
+{% if not profile_complete %}
+    <span style="color: red;">You profile is not complete. Please click <a href="{% url 'edit_profile' profile_user.id %}">here</a> to update it!</span>
+{% endif %}

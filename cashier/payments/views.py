@@ -4,20 +4,22 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.views.generic.base import View
 from django.forms import models as model_forms
+
+from cashier.mixins.form_bootstrap import BootStrapFormMixin
 from cashier.mixins.mixins import OwnerOrHouseholdAdminOrSuperUserRequiredMixin, SuperUserRequiredMixin
 from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMonth, SalariesPayment, SalariesPerMonth, \
     IndividualTaxesPayed, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
 
-class PaymentsAdminView(SuperUserRequiredMixin,UpdateView):
+class PaymentsAdminView(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = PaymentsAdmin
     fields = ('individual_monthly_tax', 'salaries')
-    template_name = 'admin_payments.html'
+    template_name = 'payments/admin_payments.html'
     def get_object(self, queryset=None):
         return self.model.objects.first()
     success_url = reverse_lazy('payment_types')
 
-class PaySalaries(SuperUserRequiredMixin, UpdateView):
+class PaySalaries(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = SalariesPayment
     def get_object(self, queryset=None):
         return self.model.objects.get(pk=1)
@@ -37,7 +39,7 @@ class PaySalaries(SuperUserRequiredMixin, UpdateView):
         if 'tax_info' not in kwargs:
             kwargs['tax_info'] = tax_info
         return super().get_context_data(**kwargs)
-    template_name = 'salaries_payment.html'
+    template_name = 'payments/salaries_payment.html'
     success_url = reverse_lazy('salaries_payment')
 
 class PaymentTypes(LoginRequiredMixin, View):
@@ -48,9 +50,9 @@ class PaymentTypes(LoginRequiredMixin, View):
             'is_hh_admin' : is_hh_admin,
             'apartment' : apartment,
         }
-        return render(request=self.request, template_name='view_payments.html', context=context)
+        return render(request=self.request, template_name='payments/view_payments.html', context=context)
 
-class MakePaymentView(OwnerOrHouseholdAdminOrSuperUserRequiredMixin, UpdateView):
+class MakePaymentView(OwnerOrHouseholdAdminOrSuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = IndividualPayment
     def get_form_class(self):
         #get the object again, because the pre_init signal wouldn't work... very very sad (with FBV it was working properly)
@@ -72,6 +74,6 @@ class MakePaymentView(OwnerOrHouseholdAdminOrSuperUserRequiredMixin, UpdateView)
         if 'profile_owner' not in kwargs:
             kwargs['profile_owner'] = UserProfile.objects.get(pk=pk).user
         return super().get_context_data(**kwargs)
-    template_name = 'make_payment.html'
+    template_name = 'payments/make_payment.html'
     def get_success_url(self):
         return reverse_lazy('make_payment', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})

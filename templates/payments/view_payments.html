@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <a href="{% url 'make_payment' request.user.id %}" class="btn bg-warning">Individual payments</a>
+    {% if is_hh_admin %}
+        <a href="{% url 'hh_member_payment' apartment %}" class="btn bg-warning">Household payments</a>
+    {% endif %}
+    {% if user.is_superuser %}
+        <a href="{% url 'payments_admin' %}" class="btn bg-warning">Taxes and slaries</a>
+    {% endif %}
+{% endblock %}

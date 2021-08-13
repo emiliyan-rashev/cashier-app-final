@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if all_users %}
+        <table>
+            <tr>
+                <th style="padding: 5px; text-align: center;">
+                    First name
+                </th>
+                <th style="padding: 5px; text-align: center;">
+                    Last name
+                </th>
+                <th style="padding: 5px; text-align: center;">
+                    Username
+                </th>
+                <th style="padding: 5px; text-align: center;">
+                    Apartment
+                </th>
+                <th style="padding: 5px; text-align: center;">
+                    Is household admin
+                </th>
+                <th style="padding: 5px; text-align: center;">
+                    Lives in apartment
+                </th>
+                <th style="padding: 5px; text-align: center;">
+
+                </th>
+            </tr>
+            {% for curr_user in all_users %}
+                <tr style="border-top: 1px solid gray;">
+                    <td style="padding: 5px;">
+                        {{ curr_user.first_name }}
+                    </td>
+                    <td style="padding: 5px;">
+                        {{ curr_user.last_name }}
+                    </td>
+                    <td style="padding: 5px;">
+                        <a href="{% url 'view_profile' curr_user.user.id %}">{{ curr_user.user }}</a>
+                    </td>
+                    <td style="padding: 5px;">
+                        {% if curr_user.household %}
+                            <a href="{% url 'hh_profile' curr_user.apartment %}">{{ curr_user.apartment }}</a>
+                        {% else %}
+                            {{ curr_user.apartment }}
+                        {% endif %}
+                    </td>
+                    <td style="padding: 5px;">
+                        {{ curr_user.is_household_admin }}
+                    </td>
+                    <td style="padding: 5px;">
+                        {{ curr_user.live_in_apartment }}
+                    </td>
+                    <td style="padding: 5px;">
+                        {% if not curr_user.household %}
+                            <a href="{% url 'hh_approve_user' curr_user.user.id %}" class="btn bg-warning">Approve / Reject</a>
+                        {% else %}
+                            <a href="{% url 'make_payment' curr_user.user.id %}" class="btn bg-primary">Make payment</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

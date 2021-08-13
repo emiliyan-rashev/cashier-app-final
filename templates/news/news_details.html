@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2><b>{{ news_object.title }}</b></h2>
+    <h4>{{ news_object.content }}</h4>
+    {% if all_comments %}
+        <i>Comments</i>:
+        <table style="margin: 10px;">
+        {% for curr_comment in all_comments %}
+            <tr>
+                <td style="padding: 3px;">
+                    <a href="{% url 'view_profile' curr_comment.user.id %}">{{ curr_comment.user }}</a>:
+                </td>
+                <td style="padding: 3px;">
+                    {{ curr_comment.content }}
+                </td>
+                <td style="padding: 3px;">
+                    {% if curr_comment.user == request.user or request.user.is_superuser %}
+                        <a href="{% url 'delete_comment' curr_comment.id %}" class="btn bg-warning">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% endfor %}
+        </table>
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+
+    {% else %}
+
+    Be the first to comment this
+    {% endif %}
+    <form method="post" style="display: block">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-primary">Comment</button>
+    </form>
+{% endblock %}

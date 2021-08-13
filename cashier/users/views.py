@@ -1,8 +1,10 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
+from django.views.generic import ListView
 from django.views.generic.base import View, TemplateView
 
+from cashier.mixins.form_bootstrap import BootStrapFormMixin
 from cashier.mixins.mixins import NotLoggedInRequired
 from cashier.profiles.forms import EditProfileForm
 from cashier.profiles.models import UserProfile
@@ -11,10 +13,11 @@ from cashier.users.forms import UserForm
 UserModel = get_user_model()
 
 class HomeView(TemplateView):
-	template_name = 'home_view.html'
+	template_name = 'base/home_view.html'
 
 class ContactView(TemplateView):
 	#This call to the model caused trouble. In a migration should be omitted by prepending "0 and " to the if statement if no solution available at the moment
+	#A model would have been a better approach than setting some default strings in the view. Also it wouldn't cause trouble with postgres' initial migration
 	if UserModel.objects.filter(is_superuser=True) and UserProfile.objects.get(
 			pk=UserModel.objects.filter(is_superuser=True).first().id).first_name != '':
 		first_superuser_profile = UserProfile.objects.get(pk=UserModel.objects.filter(is_superuser=True).first().id)
@@ -28,7 +31,7 @@ class ContactView(TemplateView):
 		superuser_first_name = 'Default_First_Name'
 		superuser_last_name = 'Default_Last_Name'
 
-	template_name = 'contact_view.html'
+	template_name = 'base/contact_view.html'
 	extra_context = {
 		'phone_number' : superuser_phone,
 		'e_mail' : superuser_email,
@@ -36,7 +39,7 @@ class ContactView(TemplateView):
 		'last_name' : superuser_last_name,
 	}
 
-class RegisterView(NotLoggedInRequired, View):
+class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 	def get(self, request):
 		user_form = UserForm()
 		profile_form = EditProfileForm()
@@ -44,7 +47,10 @@ class RegisterView(NotLoggedInRequired, View):
 			'user_form': user_form,
 			'profile_form': profile_form,
 		}
-		return render(request, 'register_view.html', context)
+		self.apply_bootstrap_classes(user_form)
+		self.apply_bootstrap_classes(profile_form)
+
+		return render(request, 'users/register_view.html', context)
 
 	def post(self, request):
 		user_form = UserForm(request.POST)
@@ -64,8 +70,8 @@ class RegisterView(NotLoggedInRequired, View):
 				'user_form': user_form,
 				'profile_form': profile_form,
 			}
-			return render(request, 'register_view.html', context)
+			return render(request, 'users/register_view.html', context)
 
-class UserLoginView(LoginView):
-	template_name = 'login_view.html'
+class UserLoginView(BootStrapFormMixin, LoginView):
+	template_name = 'users/login_view.html'
 	redirect_authenticated_user = True

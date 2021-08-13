@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% if members_in_hh %}
+    <h2>Click on the username to make payment for the corresponding user.</h2>
+    <table>
+        <tr>
+            <th>
+                First name
+            </th>
+            <th>
+                Last name
+            </th>
+            <th>
+                Username
+            </th>
+            <td>
+        </tr>
+    {% for curr_member in members_in_hh %}
+        <tr>
+            <td>
+                {{ curr_member.first_name }}
+            </td>
+            <td>
+                {{ curr_member.last_name }}
+            </td>
+            <td>
+                <a href="{% url 'make_payment' curr_member.user.id %}">{{ curr_member.user }}</a>
+            </td>
+            <td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}
