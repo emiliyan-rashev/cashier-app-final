@@ -57,7 +57,10 @@ class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin
     def get_success_url(self):
         pk_from_url = self.request.resolver_match.kwargs['pk']
         self.object = UserProfile.objects.get(pk=pk_from_url)
-        return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
+        if self.object.household != None:
+            return reverse_lazy('hh_profile', kwargs={'pk': self.object.apartment})
+        else:
+            return reverse_lazy('view_profile', kwargs={'pk': self.object.user.id})
     def get_context_data(self, **kwargs):
         kwargs.setdefault('view', self)
         pk_from_url = self.request.resolver_match.kwargs['pk']
