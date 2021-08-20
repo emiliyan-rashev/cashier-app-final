@@ -1,5 +1,14 @@
 {% extends 'base/base.html' %}
-{% load contact_details %}
+
 {% block content %}
-    {% contact_details %}
+    <span class="list-group-item">
+		Tel.: {{ phone }}<br/>
+		e-mail: <a href="mailto: {{ email }}" target="_blank">{{ email }}</a><br/>
+		{{ first_name }} {{ last_name }}
+		<!-- To apply the capitalize filter -->
+	</span>
+
+    {% if request.user.is_superuser %}
+        <a href="{% url 'update_contact_view' %}" class="btn bg-warning">Edit</a>
+    {% endif %}
 {% endblock %}

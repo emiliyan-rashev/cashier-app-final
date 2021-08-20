@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
-from django.db.models import QuerySet, Q
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView, FormView, ListView
@@ -31,7 +31,6 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
     form_class = DeleteProfileForm
     success_url = reverse_lazy('home_view')
     template_name = 'profiles/delete_profile.html'
-
     def get_context_data(self, **kwargs):
         kwargs.setdefault('view', self)
         profile_owner = cashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
@@ -40,7 +39,6 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
         if 'form' not in kwargs:
             kwargs['form'] = self.get_form()
         return kwargs
-
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
@@ -63,7 +61,6 @@ class ShowAllUsersView(SuperUserRequiredMixin, ListView):
     paginate_by = 10
     context_object_name = 'all_users'
     template_name = 'users/list_all_users.html'
-
     def get_queryset(self):
         queryset = self.model._default_manager.filter(~Q(apartment=0))
         ordering = self.get_ordering()
@@ -71,5 +68,4 @@ class ShowAllUsersView(SuperUserRequiredMixin, ListView):
             if isinstance(ordering, str):
                 ordering = (ordering,)
             queryset = queryset.order_by(*ordering)
-
         return queryset

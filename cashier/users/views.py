@@ -1,14 +1,15 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, UpdateView
 from django.views.generic.base import View, TemplateView
 
 from cashier.mixins.form_bootstrap import BootStrapFormMixin
-from cashier.mixins.mixins import NotLoggedInRequired
+from cashier.mixins.mixins import NotLoggedInRequired, SuperUserRequiredMixin
 from cashier.profiles.forms import EditProfileForm
-from cashier.profiles.models import UserProfile
 from cashier.users.forms import UserForm
+from cashier.users.models import ContactDetails
 
 UserModel = get_user_model()
 
@@ -17,6 +18,28 @@ class HomeView(TemplateView):
 
 class ContactView(TemplateView):
 	template_name = 'base/contact_view.html'
+	def get_context_data(self, **kwargs):
+		kwargs.setdefault('view', self)
+		if ContactDetails.objects.exists():
+			contact_object = ContactDetails.objects.first()
+			self.extra_context = {
+				'email' : contact_object.email,
+				'phone' : '0123456789',
+				'first_name' : 'Default_First_Name',
+				'last_name' : 'Default_Last_Name'
+			}
+			kwargs.update(self.extra_context)
+		return kwargs
+
+
+class EditContactView(BootStrapFormMixin, SuperUserRequiredMixin, UpdateView):
+	model = ContactDetails
+	fields = '__all__'
+	template_name = 'profiles/edit_profile.html'
+	success_url = reverse_lazy('contact_view')
+
+	def get_object(self, queryset=None):
+		return self.model.objects.get(pk=1)
 
 class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 	def get(self, request):

@@ -8,7 +8,7 @@
     <database id="2" parent="1" name="andre">
       <ObjectId>16680</ObjectId>
       <Owner>emo</Owner>
-      <IntrospectionStateNumber>5325</IntrospectionStateNumber>
+      <IntrospectionStateNumber>5714</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="cashier_db">
@@ -81,7 +81,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>5326</IntrospectionStateNumber>
+      <IntrospectionStateNumber>5715</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="19" parent="2" name="heap">

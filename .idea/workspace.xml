@@ -58,13 +58,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="cashier/invalid/Django" />
+    </ignored-facets>
   </component>
   <component name="ProjectId" id="1vXBiKHk037ztjFItLF2DPSu4zG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -78,7 +83,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../exam" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/manage.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -86,7 +91,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -98,6 +103,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Django server.cashier">
+    <configuration name="cashier" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="cashier" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\andre\Desktop\papka\Emo\python_web_basics\cashier\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cashier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,13 +132,13 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cashier/users" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\andre\Desktop\papka\Emo\python_web_basics\cashier\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cashier" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cashier/users/views.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cashier/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,6 +173,7 @@
     </configuration>
     <list>
       <item itemvalue="Django server.cashier" />
+      <item itemvalue="Python.cashier" />
       <item itemvalue="Python.views" />
     </list>
     <recent_temporary>
@@ -203,7 +231,9 @@
       <workItem from="1628505891420" duration="35044000" />
       <workItem from="1628700302146" duration="19935000" />
       <workItem from="1628765460048" duration="33825000" />
-      <workItem from="1628851572930" duration="30202000" />
+      <workItem from="1628851572930" duration="31892000" />
+      <workItem from="1629475506233" duration="233000" />
+      <workItem from="1629478236694" duration="3422000" />
     </task>
     <servers />
   </component>
@@ -215,14 +245,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="181" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1628363257999" />
-    <state x="499" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628792957173">
+    <state x="679" y="134" key="#cashier" timestamp="1629474815491">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="499" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628792957173" />
+    <state x="679" y="134" key="#cashier/0.0.1920.1040@0.0.1920.1040" timestamp="1629474815491" />
+    <state x="499" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1629475042233">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="499" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629475042233" />
     <state x="238" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1628333595358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="238" y="329" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1628333595358" />
+    <state x="825" y="197" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1629474928178">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="825" y="197" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629474928178" />
+    <state x="690" y="269" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1629481346220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="269" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629481346220" />
     <state x="206" y="173" key="#hh_admin" timestamp="1627588104327">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -235,58 +277,62 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="327" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1920.1040@0.0.1920.1040" timestamp="1628874099264" />
-    <state x="260" y="277" key="FileChooserDialogImpl" timestamp="1628791434733">
+    <state x="779" y="254" key="EnvironmentVariablesDialog" timestamp="1629474797315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="260" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1628791434733" />
-    <state width="1877" height="147" key="GridCell.Tab.0.bottom" timestamp="1628895507382">
+    <state x="779" y="254" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629474797315" />
+    <state x="260" y="277" key="FileChooserDialogImpl" timestamp="1629475188007">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628895507382" />
-    <state width="1877" height="147" key="GridCell.Tab.0.center" timestamp="1628895507382">
+    <state x="260" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1629475188007" />
+    <state width="1877" height="152" key="GridCell.Tab.0.bottom" timestamp="1629481217422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628895507382" />
-    <state width="1877" height="147" key="GridCell.Tab.0.left" timestamp="1628895507382">
+    <state width="1877" height="152" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629481217422" />
+    <state width="1877" height="152" key="GridCell.Tab.0.center" timestamp="1629481217422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628895507382" />
-    <state width="1877" height="147" key="GridCell.Tab.0.right" timestamp="1628895507382">
+    <state width="1877" height="152" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629481217422" />
+    <state width="1877" height="152" key="GridCell.Tab.0.left" timestamp="1629481217422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628895507382" />
-    <state width="1877" height="147" key="GridCell.Tab.1.bottom" timestamp="1628895524766">
+    <state width="1877" height="152" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629481217422" />
+    <state width="1877" height="152" key="GridCell.Tab.0.right" timestamp="1629481217422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1628895524766" />
-    <state width="1877" height="147" key="GridCell.Tab.1.center" timestamp="1628895524766">
+    <state width="1877" height="152" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629481217422" />
+    <state width="1877" height="269" key="GridCell.Tab.1.bottom" timestamp="1629480320977">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1628895524766" />
-    <state width="1877" height="147" key="GridCell.Tab.1.left" timestamp="1628895524766">
+    <state width="1877" height="269" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629480320977" />
+    <state width="1877" height="269" key="GridCell.Tab.1.center" timestamp="1629480320977">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1628895524766" />
-    <state width="1877" height="147" key="GridCell.Tab.1.right" timestamp="1628895524766">
+    <state width="1877" height="269" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629480320977" />
+    <state width="1877" height="269" key="GridCell.Tab.1.left" timestamp="1629480320977">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1628895524766" />
+    <state width="1877" height="269" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629480320977" />
+    <state width="1877" height="269" key="GridCell.Tab.1.right" timestamp="1629480320977">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="269" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629480320977" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1628542581943">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1628542581943" />
-    <state x="463" y="165" key="SettingsEditor" timestamp="1628362415640">
+    <state x="463" y="165" key="SettingsEditor" timestamp="1629475566927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1628362415640" />
+    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1629475566927" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1628769255785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1628769255785" />
-    <state x="856" y="412" width="319" height="223" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1628892174489">
+    <state x="856" y="412" width="319" height="223" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1629481186299">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="856" y="412" width="319" height="223" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1040@0.0.1920.1040" timestamp="1628892174489" />
+    <state x="856" y="412" width="319" height="223" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1040@0.0.1920.1040" timestamp="1629481186299" />
     <state x="676" y="170" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1628793230581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -303,6 +349,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="614" y="137" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1628727416160" />
+    <state x="771" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1629481701770">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="771" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1629481701770" />
     <state x="524" y="258" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1628779812569">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -315,11 +365,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/contrib/auth/__init__.py</url>
-          <line>160</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/contrib/auth/__init__.py</url>
           <line>83</line>
@@ -341,6 +386,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cashier$views.coverage" NAME="views Coverage Results" MODIFIED="1626724400361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cashier/users" />
+    <SUITE FILE_PATH="coverage/cashier$cashier.coverage" NAME="cashier Coverage Results" MODIFIED="1629475571619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

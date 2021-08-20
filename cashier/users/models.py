@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, User, PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 
+#from cashier.profiles.models import validate_integer
+from cashier.mixins.validators import validate_integer
+
+
 class CashierUserManager(BaseUserManager):
 	def _create_user(self, username, password, **extra_fields):
 		if not username:
@@ -34,3 +38,9 @@ class cashierUser(AbstractBaseUser, PermissionsMixin):
 	is_active = models.BooleanField(default=True)
 	USERNAME_FIELD = 'username'
 	objects = CashierUserManager()
+
+class ContactDetails(models.Model):
+	email = models.EmailField()
+	phone = models.CharField(max_length=10,validators=[validate_integer])
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
