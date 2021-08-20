@@ -49,8 +49,6 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
                 profile.live_in_apartment = False
                 user.save()
                 profile.save()
-                if user == request.user:
-                    return LogoutView.as_view()
             return HttpResponseRedirect(reverse_lazy('home_view'))
         else:
             return self.form_invalid(form)

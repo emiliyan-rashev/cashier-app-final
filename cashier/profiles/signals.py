@@ -17,10 +17,12 @@ def profile_updated(instance, **kwargs):
 def apartment_changed(instance, **kwargs):
     form = UserProfile.objects.get(user=instance.user)
     if form.household and form.household.apartment != form.apartment:
+        form.apartment = None
         form.household = None
         form.is_household_admin = False
         form.save()
     if not form.household and form.is_household_admin:
+        form.apartment = None
         form.is_household_admin = False
         form.save()
 

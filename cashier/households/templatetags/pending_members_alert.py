@@ -13,7 +13,7 @@ def pending_members_alert(context):
         user_profile = UserProfile.objects.get(pk=context.request.user.id)
         if context.request.user.is_superuser:
             apartments_with_admins = UserProfile.objects.filter(Q(is_household_admin=True), ~Q(apartment=user_profile.apartment), ~Q(user__in=inactive_users())).values_list('apartment', flat=True)
-            member_list = UserProfile.objects.filter(Q(household=None), ~Q(apartment__in=apartments_with_admins), ~Q(apartment=0), ~Q(user__in=inactive_users()))
+            member_list = UserProfile.objects.filter(Q(household=None), ~Q(apartment__in=apartments_with_admins), ~Q(apartment=None), ~Q(user__in=inactive_users()))
             if (len(set(member_list.values_list('apartment', flat=True))) == 1) and (HouseholdProfile.objects.filter(apartment=member_list.values_list('apartment', flat=True).first()).exists()):
                 household = member_list.values_list('apartment', flat=True).first()
             else:

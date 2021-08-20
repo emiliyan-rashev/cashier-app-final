@@ -86,7 +86,7 @@ class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin
                 profile.save()
             elif form.cleaned_data['approval'] == 'Reject':
                 profile.live_in_apartment = False
-                profile.apartment = 0
+                profile.apartment = None
                 profile.save()
             return HttpResponseRedirect(success_url)
         else:
@@ -96,7 +96,7 @@ class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin
 class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
     template_name = 'households/hh_all_pending_members.html'
     def get_context_data(self, **kwargs):
-        not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=0),~Q(user__in=inactive_users()))
+        not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=None),~Q(user__in=inactive_users()))
         existing_apartments = HouseholdProfile.objects.all().values_list('apartment', flat=True)
         self.extra_context = {
             'not_approved_members': not_approved_members,
@@ -110,7 +110,7 @@ class UrgentPendingMembersView(SuperUserRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         apartments_with_admins = UserProfile.objects.filter(Q(is_household_admin=True), ~Q(
             apartment=UserProfile.objects.get(pk=self.request.user.id).apartment), ~Q(user__in=inactive_users())).values_list('apartment',flat=True)
-        not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=0), ~Q(apartment__in=apartments_with_admins), ~Q(user__in=inactive_users()))
+        not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=None), ~Q(apartment__in=apartments_with_admins), ~Q(user__in=inactive_users()))
         existing_apartments = HouseholdProfile.objects.all().values_list('apartment', flat=True)
         self.extra_context = {
             'not_approved_members': not_approved_members,

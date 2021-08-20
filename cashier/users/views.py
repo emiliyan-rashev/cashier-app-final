@@ -24,9 +24,9 @@ class ContactView(TemplateView):
 			contact_object = ContactDetails.objects.first()
 			self.extra_context = {
 				'email' : contact_object.email,
-				'phone' : '0123456789',
-				'first_name' : 'Default_First_Name',
-				'last_name' : 'Default_Last_Name'
+				'phone' : contact_object.phone,
+				'first_name' : contact_object.first_name,
+				'last_name' : contact_object.last_name
 			}
 			kwargs.update(self.extra_context)
 		return kwargs
