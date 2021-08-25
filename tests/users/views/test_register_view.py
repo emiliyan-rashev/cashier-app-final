@@ -7,6 +7,7 @@ from cashier.users.forms import UserForm
 
 UserModel = get_user_model()
 
+
 class RegisterViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()

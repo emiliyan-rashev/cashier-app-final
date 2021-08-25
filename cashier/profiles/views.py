@@ -27,7 +27,6 @@ class EditProfileView(BootStrapFormMixin, OwnerOrSuperUserRequiredMixin, UpdateV
     def get_success_url(self):
         return reverse_lazy('view_profile', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})
 
-#Should be tested
 class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
     form_class = DeleteProfileForm
     success_url = reverse_lazy('home_view')
@@ -50,6 +49,8 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
                 user.is_active = False
                 profile = UserProfile.objects.get(pk=self.request.resolver_match.kwargs['pk'])
                 profile.live_in_apartment = False
+                profile.apartment = None
+                profile.is_household_admin = False
                 user.save()
                 profile.save()
             return HttpResponseRedirect(reverse_lazy('home_view'))
@@ -64,7 +65,7 @@ class ShowAllUsersView(SuperUserRequiredMixin, ListView):
     context_object_name = 'all_users'
     template_name = 'users/list_all_users.html'
     def get_queryset(self):
-        queryset = self.model._default_manager.filter(~Q(apartment=0))
+        queryset = self.model.objects.filter(~Q(apartment=None))
         ordering = self.get_ordering()
         if ordering:
             if isinstance(ordering, str):

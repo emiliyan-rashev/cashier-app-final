@@ -63,7 +63,7 @@ def individual_taxes_payed(instance, **kwargs):
 
 @receiver(pre_init, sender=IndividualPayment)
 def get_available_payments(**kwargs):
-    if 'args' in kwargs and len(kwargs['args']) > 0:
+    if ('args' in kwargs and len(kwargs['args']) > 0) and (TaxesPerMonth.objects.exists()):
         curr_id = kwargs['args'][0]
         month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         tax_object = TaxesPerMonth.objects.first()
