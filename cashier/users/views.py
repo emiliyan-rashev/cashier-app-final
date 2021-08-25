@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView
+from django.views.generic import UpdateView
 from django.views.generic.base import View, TemplateView
 
 from cashier.mixins.form_bootstrap import BootStrapFormMixin
@@ -31,7 +31,6 @@ class ContactView(TemplateView):
 			kwargs.update(self.extra_context)
 		return kwargs
 
-
 class EditContactView(BootStrapFormMixin, SuperUserRequiredMixin, UpdateView):
 	model = ContactDetails
 	fields = '__all__'
@@ -59,7 +58,6 @@ class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 		profile_form = EditProfileForm(request.POST)
 		if user_form.is_valid() and profile_form.is_valid():
 			user = user_form.save(commit=False)
-			qwe = user.id
 			user.id = request.user.id
 			user.save()
 			profile = profile_form.save(commit=False)

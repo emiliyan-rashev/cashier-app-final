@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from cashier.news.models import News
 from cashier.payments.models import IndividualPayment, PaymentsAdmin, TaxesPerMonth, SalariesPerMonth, SalariesPayment, IndividualTaxesPayed, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
-from cashier.users.models import cashierUser
+from cashier.users.models import CashierUser
 import datetime
 
 @receiver(post_save, sender=UserProfile)
@@ -15,30 +15,30 @@ def profile_updated(instance, **kwargs):
         tax_profile = IndividualTaxesPayed(pk=instance.user_id)
         tax_profile.save()
 
-@receiver(post_save, sender=cashierUser)
+@receiver(post_save, sender=CashierUser)
 def super_user_created(instance, created, **kwargs):
     if created and not PaymentsAdmin.objects.exists():
-        if cashierUser.objects.get(id=instance.id).is_superuser:
+        if CashierUser.objects.get(id=instance.id).is_superuser:
             admin_payment_profile = PaymentsAdmin(pk=1)
             admin_payment_profile.save()
 
     if created and not TaxesPerMonth.objects.exists():
-        if cashierUser.objects.get(id=instance.id).is_superuser:
+        if CashierUser.objects.get(id=instance.id).is_superuser:
             taxes_per_month = TaxesPerMonth(pk=1)
             taxes_per_month.save()
 
     if created and not SalariesPerMonth.objects.exists():
-        if cashierUser.objects.get(id=instance.id).is_superuser:
+        if CashierUser.objects.get(id=instance.id).is_superuser:
             taxes_per_month = SalariesPerMonth(pk=1)
             taxes_per_month.save()
 
     if created and not SalariesPayment.objects.exists():
-        if cashierUser.objects.get(id=instance.id).is_superuser:
+        if CashierUser.objects.get(id=instance.id).is_superuser:
             taxes_per_month = SalariesPayment(pk=1)
             taxes_per_month.save()
 
     if created and not SalariesPayedPerMonth.objects.exists():
-        if cashierUser.objects.get(id=instance.id).is_superuser:
+        if CashierUser.objects.get(id=instance.id).is_superuser:
             taxes_per_month = SalariesPayedPerMonth(pk=1)
             taxes_per_month.save()
 

@@ -9,11 +9,11 @@ from cashier.households.models import HouseholdProfile
 from cashier.mixins.form_bootstrap import BootStrapFormMixin
 from cashier.mixins.mixins import SuperUserRequiredMixin, HouseholdAdminRequiredMixin, HouseholdAdminOfUserRequiredMixin
 from cashier.profiles.models import UserProfile
-from cashier.users.models import cashierUser
+from cashier.users.models import CashierUser
 
 #not a view - shouldn't be here
 def inactive_users():
-    return cashierUser.objects.filter(is_active=False)
+    return CashierUser.objects.filter(is_active=False)
 
 class HouseholdProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'households/hh_profile_view.html'

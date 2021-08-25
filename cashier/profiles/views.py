@@ -9,7 +9,7 @@ from cashier.mixins.form_bootstrap import BootStrapFormMixin
 from cashier.mixins.mixins import OwnerOrSuperUserRequiredMixin, SuperUserRequiredMixin
 from cashier.profiles.forms import EditProfileForm, DeleteProfileForm
 from cashier.profiles.models import UserProfile
-from cashier.users.models import cashierUser
+from cashier.users.models import CashierUser
 
 class ViewProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profiles/view_profile.html'
@@ -27,23 +27,26 @@ class EditProfileView(BootStrapFormMixin, OwnerOrSuperUserRequiredMixin, UpdateV
     def get_success_url(self):
         return reverse_lazy('view_profile', kwargs={'pk': self.kwargs.get(self.pk_url_kwarg)})
 
+#Should be tested
 class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
     form_class = DeleteProfileForm
     success_url = reverse_lazy('home_view')
     template_name = 'profiles/delete_profile.html'
+
     def get_context_data(self, **kwargs):
         kwargs.setdefault('view', self)
-        profile_owner = cashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+        profile_owner = CashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
         self.extra_context = {'profile_owner' : profile_owner}
         kwargs.update(self.extra_context)
         if 'form' not in kwargs:
             kwargs['form'] = self.get_form()
         return kwargs
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
             if form.cleaned_data['result'] == 'Delete':
-                user = cashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+                user = CashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
                 user.is_active = False
                 profile = UserProfile.objects.get(pk=self.request.resolver_match.kwargs['pk'])
                 profile.live_in_apartment = False
@@ -53,6 +56,7 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
         else:
             return self.form_invalid(form)
 
+#Should be tested and get_queryset method to be revised
 class ShowAllUsersView(SuperUserRequiredMixin, ListView):
     model = UserProfile
     ordering = ['apartment']

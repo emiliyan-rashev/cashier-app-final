@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=10,validators=[validate_integer])
     apartment = models.IntegerField(null=True, blank=True)
+    #household on_delete to be tested
     household = models.ForeignKey(HouseholdProfile(apartment=apartment), on_delete=models.SET_NULL, null=True, blank=True)
     live_in_apartment = models.BooleanField(default=True)
     newsletter_agreement = models.BooleanField(default=False)
