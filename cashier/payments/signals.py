@@ -93,7 +93,7 @@ def get_available_salaries(**kwargs):
         SalariesPayment.objects.filter(pk=1).update(**{str(curr_month) : salaries_needed_per_month[curr_month] <= slaries_payed_per_month[curr_month] for curr_month in month_keys})
 
 @receiver(pre_save, sender=PaymentsAdmin)
-def get_available_salaries(instance, **kwargs):
+def create_news_for_tax_or_slaries_change(instance, **kwargs):
     if PaymentsAdmin.objects.exists():
         new_tax = instance.individual_monthly_tax
         previous_tax = PaymentsAdmin.objects.first().individual_monthly_tax

@@ -1,15 +1,9 @@
-from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
 from django.urls import reverse
-
 from cashier.users.models import ContactDetails
+from tests.base.common import CashierTestCase
 
-UserModel = get_user_model()
 
-class ContactDetailsTest(TestCase):
-    def setUp(self) -> None:
-        self.client = Client()
-
+class ContactDetailsTest(CashierTestCase):
     def test_get_when_contact_object_does_not_exist(self):
         response = self.client.get(reverse('contact_view'))
         context_keys = response.context.keys()
@@ -20,7 +14,7 @@ class ContactDetailsTest(TestCase):
         self.assertTrue('last_name' not in context_keys)
 
     def test_get_when_contact_object_exists(self):
-        UserModel.objects.create_superuser(username='emo_superuser', password='123qwe')
+        self.create_superuser()
         contact_object = ContactDetails.objects.get(pk=1)
         contact_object.email = 'test_email'
         contact_object.phone = 'test_phone'

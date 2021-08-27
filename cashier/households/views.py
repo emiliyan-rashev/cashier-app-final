@@ -53,6 +53,7 @@ class HouseholdRemoveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin,
 
 class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin, FormView):
     form_class = UserApproveForm
+    template_name = 'households/hh_approve_user.html'
 
     def get_success_url(self):
         pk_from_url = self.request.resolver_match.kwargs['pk']
@@ -91,7 +92,7 @@ class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin
             return HttpResponseRedirect(success_url)
         else:
             return self.form_invalid(form)
-    template_name = 'households/hh_approve_user.html'
+
 
 class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
     template_name = 'households/hh_all_pending_members.html'

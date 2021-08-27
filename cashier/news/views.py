@@ -8,6 +8,7 @@ from cashier.mixins.mixins import SuperUserRequiredMixin
 from cashier.news.forms import CommentForm
 from cashier.news.models import News, Comment
 
+
 class NewsListView(LoginRequiredMixin, ListView):
     model = News
     ordering = ['-pk']

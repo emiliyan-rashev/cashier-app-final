@@ -1,16 +1,8 @@
-from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
 from django.urls import reverse
-
-from cashier.profiles.models import UserProfile
-from cashier.users.forms import UserForm
-
-UserModel = get_user_model()
+from tests.base.common import CashierTestCase
 
 
-class RegisterViewTest(TestCase):
-    def setUp(self) -> None:
-        self.client = Client()
+class RegisterViewTest(CashierTestCase):
 
     def test_both_user_and_profile_forms_are_loaded(self):
         response = self.client.get(reverse('register_view'))
@@ -27,41 +19,16 @@ class RegisterViewTest(TestCase):
         self.assertListEqual(list(response.context['profile_form'].fields.keys()), profile_form_shown_fields)
 
     def test_user_and_profile_creation(self):
-        test_username = 'test_username'
-        test_password = 'test_password'
-        test_first_name = 'test_first_name'
-        test_last_name = 'test_last_name'
-        test_email = 'test_email@test.qwe'
-        test_phone_number = '0123456789'
-        test_apartment = 1
-        test_live_in_apartment = True
-        test_newsletter_agreement = True
-        response = self.client.post(reverse('register_view'), data={
-                'username' : test_username,
-                'password1' : test_password,
-                'password2' : test_password,
-                'first_name' : test_first_name,
-                'last_name' : test_last_name,
-                'email' : test_email,
-                'phone_number' : test_phone_number,
-                'apartment' : test_apartment,
-                'live_in_apartment' : test_live_in_apartment,
-                'newsletter_agreement' : test_newsletter_agreement,
-            }
-        )
-        user_id = response.wsgi_request.user.id
-        user = UserModel.objects.get(pk=user_id)
-        profile = UserProfile.objects.get(pk=user_id)
-
-        self.assertEqual(user.username, test_username)
-        self.assertEqual(profile.first_name, test_first_name)
-        self.assertEqual(profile.last_name, test_last_name)
-        self.assertEqual(profile.email, test_email)
-        self.assertEqual(profile.phone_number, test_phone_number)
-        self.assertEqual(profile.apartment, test_apartment)
-        self.assertIsNone(profile.household)
-        self.assertEqual(profile.live_in_apartment, test_live_in_apartment)
-        self.assertEqual(profile.newsletter_agreement, test_newsletter_agreement)
-        self.assertFalse(profile.is_household_admin)
-        self.assertEqual(profile.user, user)
+        self.create_user()
+        self.assertEqual(self.user.username, self.test_username)
+        self.assertEqual(self.profile.first_name, self.test_first_name)
+        self.assertEqual(self.profile.last_name, self.test_last_name)
+        self.assertEqual(self.profile.email, self.test_email)
+        self.assertEqual(self.profile.phone_number, self.test_phone_number)
+        self.assertEqual(self.profile.apartment, self.test_apartment)
+        self.assertIsNone(self.profile.household)
+        self.assertEqual(self.profile.live_in_apartment, self.test_live_in_apartment)
+        self.assertEqual(self.profile.newsletter_agreement, self.test_newsletter_agreement)
+        self.assertFalse(self.profile.is_household_admin)
+        self.assertEqual(self.profile.user, self.user)
 

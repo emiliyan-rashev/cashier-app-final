@@ -4,7 +4,6 @@ from django.contrib.auth import login, get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.views.generic.base import View, TemplateView
-
 from cashier.mixins.form_bootstrap import BootStrapFormMixin
 from cashier.mixins.mixins import NotLoggedInRequired, SuperUserRequiredMixin
 from cashier.profiles.forms import EditProfileForm
@@ -13,8 +12,10 @@ from cashier.users.models import ContactDetails
 
 UserModel = get_user_model()
 
+
 class HomeView(TemplateView):
 	template_name = 'base/home_view.html'
+
 
 class ContactView(TemplateView):
 	template_name = 'base/contact_view.html'
@@ -31,6 +32,7 @@ class ContactView(TemplateView):
 			kwargs.update(self.extra_context)
 		return kwargs
 
+
 class EditContactView(BootStrapFormMixin, SuperUserRequiredMixin, UpdateView):
 	model = ContactDetails
 	fields = '__all__'
@@ -39,6 +41,7 @@ class EditContactView(BootStrapFormMixin, SuperUserRequiredMixin, UpdateView):
 
 	def get_object(self, queryset=None):
 		return self.model.objects.get(pk=1)
+
 
 class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 	def get(self, request):
@@ -73,6 +76,7 @@ class RegisterView(BootStrapFormMixin, NotLoggedInRequired, View):
 				'profile_form': profile_form,
 			}
 			return render(request, 'users/register_view.html', context)
+
 
 class UserLoginView(BootStrapFormMixin, LoginView):
 	template_name = 'users/login_view.html'

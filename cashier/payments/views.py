@@ -11,6 +11,7 @@ from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMo
     IndividualTaxesPayed, SalariesPayedPerMonth
 from cashier.profiles.models import UserProfile
 
+
 class PaymentsAdminView(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = PaymentsAdmin
     fields = ('individual_monthly_tax', 'salaries')
@@ -21,6 +22,9 @@ class PaymentsAdminView(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
 
 class PaySalaries(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
     model = SalariesPayment
+    template_name = 'payments/salaries_payment.html'
+    success_url = reverse_lazy('salaries_payment')
+
     def get_object(self, queryset=None):
         return self.model.objects.get(pk=1)
     def get_form_class(self):
@@ -39,8 +43,7 @@ class PaySalaries(SuperUserRequiredMixin, BootStrapFormMixin, UpdateView):
         if 'tax_info' not in kwargs:
             kwargs['tax_info'] = tax_info
         return super().get_context_data(**kwargs)
-    template_name = 'payments/salaries_payment.html'
-    success_url = reverse_lazy('salaries_payment')
+
 
 class PaymentTypes(LoginRequiredMixin, View):
     def get(self, request):
