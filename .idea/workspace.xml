@@ -123,6 +123,26 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Test: tests.payments.views.test_make_payment_view.PayTaxes" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="cashier" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.payments.views.test_make_payment_view.PayTaxes" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Test: tests.payments.views.test_pay_salaries_view.PaySalaries" type="DjangoTestsConfigurationType" temporary="true">
       <module name="cashier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,26 +177,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="TARGET" value="tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_fields_after_payment" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_initial_fields" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="cashier" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_initial_fields" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
@@ -253,18 +253,18 @@
       <item itemvalue="Django server.cashier" />
       <item itemvalue="Django tests.Test: tests" />
       <item itemvalue="Python.cashier" />
-      <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_initial_fields" />
       <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_fields_after_payment" />
       <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries" />
       <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_get_context_data" />
+      <item itemvalue="Django tests.Test: tests.payments.views.test_make_payment_view.PayTaxes" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Django tests.Test: tests" />
-        <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_get_context_data" />
+        <item itemvalue="Django tests.Test: tests.payments.views.test_make_payment_view.PayTaxes" />
         <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries" />
+        <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_get_context_data" />
         <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_fields_after_payment" />
-        <item itemvalue="Django tests.Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_form_initial_fields" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +323,7 @@
       <workItem from="1629812611251" duration="3728000" />
       <workItem from="1629900730999" duration="15889000" />
       <workItem from="1630093545904" duration="6313000" />
-      <workItem from="1630146822505" duration="7777000" />
+      <workItem from="1630146822505" duration="12377000" />
     </task>
     <servers />
   </component>
@@ -379,38 +379,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1629475188007" />
-    <state width="1877" height="286" key="GridCell.Tab.0.bottom" timestamp="1630154591232">
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1630166598188">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630154591232" />
-    <state width="1877" height="286" key="GridCell.Tab.0.center" timestamp="1630154591232">
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630166598188" />
+    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1630166598187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630154591232" />
-    <state width="1877" height="286" key="GridCell.Tab.0.left" timestamp="1630154591232">
+    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630166598187" />
+    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1630166598187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630154591232" />
-    <state width="1877" height="286" key="GridCell.Tab.0.right" timestamp="1630154591232">
+    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630166598187" />
+    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1630166598188">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630154591232" />
-    <state width="1877" height="340" key="GridCell.Tab.1.bottom" timestamp="1630153847225">
+    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630166598188" />
+    <state width="1877" height="340" key="GridCell.Tab.1.bottom" timestamp="1630165492676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="340" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630153847225" />
-    <state width="1877" height="340" key="GridCell.Tab.1.center" timestamp="1630153847225">
+    <state width="1877" height="340" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630165492676" />
+    <state width="1877" height="340" key="GridCell.Tab.1.center" timestamp="1630165492676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="340" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630153847225" />
-    <state width="1877" height="340" key="GridCell.Tab.1.left" timestamp="1630153847225">
+    <state width="1877" height="340" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630165492676" />
+    <state width="1877" height="340" key="GridCell.Tab.1.left" timestamp="1630165492676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="340" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630153847225" />
-    <state width="1877" height="340" key="GridCell.Tab.1.right" timestamp="1630153847225">
+    <state width="1877" height="340" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630165492676" />
+    <state width="1877" height="340" key="GridCell.Tab.1.right" timestamp="1630165492676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="340" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630153847225" />
+    <state width="1877" height="340" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630165492676" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1628542581943">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -464,6 +464,11 @@
           <line>83</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/payments/common/taxes_and_salaries_payments.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -480,12 +485,12 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cashier$Test__tests_payments_views_test_pay_salaries_view_PaySalaries.coverage" NAME="Test: tests.payments.views.test_pay_salaries_view.PaySalaries Coverage Results" MODIFIED="1630150562075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/cashier$Test__tests_payments_views_test_pay_salaries_view_PaySalaries.coverage" NAME="Test: tests.payments.views.test_pay_salaries_view.PaySalaries Coverage Results" MODIFIED="1630166059287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_payments_views_test_pay_salaries_view_PaySalaries_test_get_context_data.coverage" NAME="Test: tests.payments.views.test_pay_salaries_view.PaySalaries.test_get_context_data Coverage Results" MODIFIED="1630154570485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_contact_details_test_ContactDetailsTest_test_get_when_contact_object_does_not_exist.coverage" NAME="Test: tests.users.views.contact_details_test.ContactDetailsTest.test_get_when_contact_object_does_not_exist Coverage Results" MODIFIED="1629814513384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_register_view_test_RegisterViewTest_test_user_and_profile_creation.coverage" NAME="Test: tests.users.views.register_view_test.RegisterViewTest.test_user_and_profile_creation Coverage Results" MODIFIED="1629916244261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_payments_views_test_payment_types_view_ShowAllUsersViewTest.coverage" NAME="Test: tests.payments.views.test_payment_types_view.ShowAllUsersViewTest Coverage Results" MODIFIED="1630102549793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/cashier$Test__tests.coverage" NAME="Test: tests Coverage Results" MODIFIED="1630154591224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/cashier$Test__tests.coverage" NAME="Test: tests Coverage Results" MODIFIED="1630166598180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_contact_details_test_MyTest_test_asd.coverage" NAME="Test: tests.users.views.contact_details_test.MyTest.test_asd Coverage Results" MODIFIED="1629812837441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_contact_details_test_ContactDetailsTest_test_get_when_contact_object_exists.coverage" NAME="Test: tests.users.views.contact_details_test.ContactDetailsTest.test_get_when_contact_object_exists Coverage Results" MODIFIED="1629909407213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_contact_details_test_ContactDetailsTest_test_signal_for_ContactView_object_on_super_user_creation.coverage" NAME="Test: tests.users.views.contact_details_test.ContactDetailsTest.test_signal_for_ContactView_object_on_super_user_creation Coverage Results" MODIFIED="1629815428212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -507,6 +512,7 @@
     <SUITE FILE_PATH="coverage/cashier$Test__tests_profiles_views_test_show_all_users_view_ShowAllUsersViewTest.coverage" NAME="Test: tests.profiles.views.test_show_all_users_view.ShowAllUsersViewTest Coverage Results" MODIFIED="1629927658433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$cashier.coverage" NAME="cashier Coverage Results" MODIFIED="1629475571619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_register_view_test_RegisterViewTest_test_user_form_fields_are_correct.coverage" NAME="Test: tests.users.views.register_view_test.RegisterViewTest.test_user_form_fields_are_correct Coverage Results" MODIFIED="1629911827138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/cashier$Test__tests_payments_views_test_make_payment_view_PayTaxes.coverage" NAME="Test: tests.payments.views.test_make_payment_view.PayTaxes Coverage Results" MODIFIED="1630166075317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cashier$Test__tests_users_views_test_contact_details_ContactDetailsTest_test_get_when_contact_object_exists.coverage" NAME="Test: tests.users.views.test_contact_details.ContactDetailsTest.test_get_when_contact_object_exists Coverage Results" MODIFIED="1629918776343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

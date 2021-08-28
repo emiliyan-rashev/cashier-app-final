@@ -50,4 +50,4 @@ class CashierTestCase(TestCase):
         self.profile = UserProfile.objects.get(pk=pk)
 
     def get_form_field_names(self, view_name):
-        self.displayed_fields = list(self.client.get(reverse(str(view_name))).context['form'].fields.keys())
+        self.displayed_fields = list(self.client.get(view_name).context['form'].fields.keys())

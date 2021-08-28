@@ -22,7 +22,7 @@
                     Paid
                 </th>
             </tr>
-        {% for curr_month, curr_tax, is_paid in tax_info %}
+        {% for curr_month, curr_tax, curr_paid in tax_info %}
         <tr>
             <td style="padding: 5px;">
                 {{ curr_month }}
@@ -31,10 +31,21 @@
                 {{ curr_tax }}
             </td>
             <td style="padding: 5px;">
-                {{ is_paid }}
+                {{ curr_paid }}
             </td>
         </tr>
         {% endfor %}
+        <tr>
+            <td style="padding: 5px;">
+                <b>Total: </b>
+            </td>
+            <td style="padding: 5px;">
+                <b>{{ total_taxes_needed }} </b>
+            </td>
+            <td style="padding: 5px;">
+                <b>{{ total_taxes_paid }} </b>
+            </td>
+        </tr>
     </table>
     {% if form.fields %}
         <form method="post" style="padding: 5px;">

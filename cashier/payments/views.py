@@ -76,11 +76,15 @@ class MakePaymentView(OwnerOrHouseholdAdminOrSuperUserRequiredMixin, BootStrapFo
         payed_object = IndividualTaxesPayed.objects.get(pk=pk)
         taxes_payed_per_month = {curr_field.name: curr_field.value_from_object(payed_object) for curr_field in payed_object._meta.get_fields() if curr_field.name in month_keys}
         tax_info = [(curr_field.name, curr_field.value_from_object(tax_object), taxes_payed_per_month[curr_field.name]) for curr_field in tax_object._meta.get_fields() if curr_field.name in month_keys]
-        tax_info.append(['Total', sum([curr_value[1] for curr_value in tax_info]), sum([curr_value[2] for curr_value in tax_info])])
-        if 'tax_info' not in kwargs:
-            kwargs['tax_info'] = tax_info
         if 'profile_owner' not in kwargs:
             kwargs['profile_owner'] = UserProfile.objects.get(pk=pk).user
+        if 'tax_info' not in kwargs:
+            kwargs['tax_info'] = tax_info
+        if 'total_taxes_needed' not in kwargs:
+            kwargs['total_taxes_needed'] = sum([curr_value[1] for curr_value in tax_info])
+        if 'total_taxes_paid' not in kwargs:
+            kwargs['total_taxes_paid'] = sum([curr_value[2] for curr_value in tax_info])
+
         return super().get_context_data(**kwargs)
     template_name = 'payments/make_payment.html'
     def get_success_url(self):
