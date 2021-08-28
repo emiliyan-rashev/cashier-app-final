@@ -26,6 +26,18 @@
             </td>
         </tr>
         {% endfor %}
+        <tr>
+            <td style="padding: 5px;">
+                <b>Total: </b>
+            </td>
+            <td style="padding: 5px;">
+                <b>{{ total_taxes_needed }} </b>
+            </td>
+            <td style="padding: 5px;">
+                <b>{{ total_taxes_paid }} </b>
+            </td>
+
+        </tr>
     </table>
     {% if form.fields %}
         <form method="post" style="padding: 5px;">
