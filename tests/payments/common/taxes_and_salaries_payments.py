@@ -18,7 +18,7 @@ class PaySalariesAndTaxes():
 
     def tearDown(self) -> None:
         self.tax_class_object.update(**{month: 0 for month in self.month_keys})
-        SalariesPayedPerMonth.objects.filter(pk=1).update(**{month: 0 for month in self.month_keys})
+        self.paid_class_object.objects.filter(pk=1).update(**{month: 0 for month in self.month_keys})
 
     def pay_first_month(self):
         self.client.post(

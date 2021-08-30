@@ -1,10 +1,7 @@
-
-#get_form_class - especially with the comment regarding the pre_init signal
-#get_context_data -
 import datetime
 
 from django.test import Client
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 
 from cashier.payments.models import TaxesPerMonth, IndividualTaxesPayed
 from tests.base.common import CashierTestCase
@@ -22,4 +19,4 @@ class PayTaxes(CashierTestCase, PaySalariesAndTaxes):
         self.future_months = self.month_keys[self.curr_month:len(self.month_keys)]
         self.target = reverse('make_payment', kwargs={'pk': self.user_id})
         self.tax_class_object = TaxesPerMonth.objects.filter(pk=1)
-        self.paid_class_object = IndividualTaxesPayed.objects.filter(pk=1)
+        self.paid_class_object = IndividualTaxesPayed.objects.filter(pk=self.user_id)
