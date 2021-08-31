@@ -15,8 +15,8 @@ class PaymentTypesTest(CashierTestCase):
         self.create_superuser()
         self.client.logout()
         self.client.force_login(self.super_user)
-        self.client.post(reverse('hh_approve_user', kwargs={'pk': self.user_id}), data={'approval': 'Approve'})
-        self.client.post(reverse('set_hh_admin', kwargs={'pk': self.user_id}), data={'is_household_admin': True})
+        self.client.post(reverse('hh_approve_user', kwargs={'pk': self.user.id}), data={'approval': 'Approve'})
+        self.client.post(reverse('set_hh_admin', kwargs={'pk': self.user.id}), data={'is_household_admin': True})
         self.client.logout()
         self.client.force_login(self.user)
 

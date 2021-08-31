@@ -21,10 +21,26 @@ class HouseholdProfileView(LoginRequiredMixin, TemplateView):
         pk_from_url = self.request.resolver_match.kwargs['pk']
         household = HouseholdProfile.objects.get(pk=pk_from_url)
         curr_user = UserProfile.objects.get(pk=self.request.user.id)
-        members_in_hh = UserProfile.objects.filter(Q(live_in_apartment=True), Q(household=household), ~Q(user__in=inactive_users()))
-        admins_in_hh = UserProfile.objects.filter(Q(is_household_admin=True), Q(household=household), ~Q(user__in=inactive_users()))
-        not_approved_members = UserProfile.objects.filter(Q(apartment=household.apartment), Q(household=None), ~Q(user__in=inactive_users()))
-        not_living_in_hh = UserProfile.objects.filter(Q(live_in_apartment=False), Q(household=household), ~Q(user__in=inactive_users()))
+        members_in_hh = UserProfile.objects.filter(
+            Q(live_in_apartment=True),
+            Q(household=household),
+            ~Q(user__in=inactive_users())
+        )
+        admins_in_hh = UserProfile.objects.filter(
+            Q(is_household_admin=True),
+            Q(household=household),
+            ~Q(user__in=inactive_users())
+        )
+        not_approved_members = UserProfile.objects.filter(
+            Q(apartment=household.apartment),
+            Q(household=None),
+            ~Q(user__in=inactive_users())
+        )
+        not_living_in_hh = UserProfile.objects.filter(
+            Q(live_in_apartment=False),
+            Q(household=household),
+            ~Q(user__in=inactive_users())
+        )
         is_hh_admin = curr_user.is_household_admin and household.apartment == curr_user.apartment
         self.extra_context = {
             'members_in_hh': members_in_hh,
@@ -93,7 +109,6 @@ class HouseholdApproveUser(HouseholdAdminOfUserRequiredMixin, BootStrapFormMixin
         else:
             return self.form_invalid(form)
 
-
 class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
     template_name = 'households/hh_all_pending_members.html'
     def get_context_data(self, **kwargs):
@@ -109,9 +124,17 @@ class AllPendingMembersView(SuperUserRequiredMixin, TemplateView):
 class UrgentPendingMembersView(SuperUserRequiredMixin, TemplateView):
     template_name = 'households/hh_urgent_pending_members.html'
     def get_context_data(self, **kwargs):
-        apartments_with_admins = UserProfile.objects.filter(Q(is_household_admin=True), ~Q(
-            apartment=UserProfile.objects.get(pk=self.request.user.id).apartment), ~Q(user__in=inactive_users())).values_list('apartment',flat=True)
-        not_approved_members = UserProfile.objects.filter(Q(household=None), ~Q(apartment=None), ~Q(apartment__in=apartments_with_admins), ~Q(user__in=inactive_users()))
+        apartments_with_admins = UserProfile.objects.filter(
+            Q(is_household_admin=True),
+            ~Q(apartment=UserProfile.objects.get(pk=self.request.user.id).apartment),
+            ~Q(user__in=inactive_users())
+        ).values_list('apartment',flat=True)
+        not_approved_members = UserProfile.objects.filter(
+            Q(household=None),
+            ~Q(apartment=None),
+            ~Q(apartment__in=apartments_with_admins),
+            ~Q(user__in=inactive_users())
+        )
         existing_apartments = HouseholdProfile.objects.all().values_list('apartment', flat=True)
         self.extra_context = {
             'not_approved_members': not_approved_members,

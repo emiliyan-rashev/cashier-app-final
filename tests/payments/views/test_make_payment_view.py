@@ -17,6 +17,6 @@ class PayTaxes(CashierTestCase, PaySalariesAndTaxes):
         self.month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         self.curr_month = datetime.date.today().month
         self.future_months = self.month_keys[self.curr_month:len(self.month_keys)]
-        self.target = reverse('make_payment', kwargs={'pk': self.user_id})
+        self.target = reverse('make_payment', kwargs={'pk': self.user.id})
         self.tax_class_object = TaxesPerMonth.objects.filter(pk=1)
-        self.paid_class_object = IndividualTaxesPayed.objects.filter(pk=self.user_id)
+        self.paid_class_object = IndividualTaxesPayed.objects.filter(pk=self.user.id)

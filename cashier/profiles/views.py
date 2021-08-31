@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -9,6 +10,7 @@ from cashier.profiles.forms import EditProfileForm, DeleteProfileForm
 from cashier.profiles.models import UserProfile
 from cashier.users.models import CashierUser
 
+UserModel = get_user_model()
 
 class ViewProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profiles/view_profile.html'
@@ -46,7 +48,7 @@ class DeleteProfileView(OwnerOrSuperUserRequiredMixin, FormView):
         form = self.get_form()
         if form.is_valid():
             if form.cleaned_data['result'] == 'Delete':
-                user = CashierUser.objects.get(pk=self.request.resolver_match.kwargs['pk'])
+                user = UserModel.objects.get(pk=self.request.resolver_match.kwargs['pk'])
                 user.is_active = False
                 profile = UserProfile.objects.get(pk=self.request.resolver_match.kwargs['pk'])
                 profile.live_in_apartment = False
