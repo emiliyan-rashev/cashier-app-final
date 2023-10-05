@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class MonthsBooleanFields(models.Model):
     January = models.BooleanField(default=False)
     February = models.BooleanField(default=False)
@@ -13,8 +14,10 @@ class MonthsBooleanFields(models.Model):
     October = models.BooleanField(default=False)
     November = models.BooleanField(default=False)
     December = models.BooleanField(default=False)
+
     class Meta:
         abstract = True
+
 
 class MonthsIntegerFields(models.Model):
     January = models.IntegerField(default=0)
@@ -29,29 +32,35 @@ class MonthsIntegerFields(models.Model):
     October = models.IntegerField(default=0)
     November = models.IntegerField(default=0)
     December = models.IntegerField(default=0)
+
     class Meta:
         abstract = True
+
 
 class PaymentsAdmin(models.Model):
     individual_monthly_tax = models.IntegerField(default=0)
     salaries = models.IntegerField(default=0)
 
+
 class TaxesPerMonth(MonthsIntegerFields, models.Model):
     pass
+
 
 class IndividualPayment(MonthsBooleanFields, models.Model):
     pass
 
+
 class IndividualTaxesPayed(MonthsIntegerFields, models.Model):
     pass
+
 
 class SalariesPerMonth(MonthsIntegerFields, models.Model):
     pass
 
+
 class SalariesPayedPerMonth(MonthsIntegerFields, models.Model):
     pass
 
+
 class SalariesPayment(MonthsBooleanFields, models.Model):
     pass
-
-

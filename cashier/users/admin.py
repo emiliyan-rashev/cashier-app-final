@@ -1,18 +1,25 @@
 from django.contrib import admin
 from cashier.households.models import HouseholdProfile
 from cashier.news.models import News, Comment
-from cashier.payments.models import PaymentsAdmin, IndividualPayment, TaxesPerMonth, SalariesPerMonth, \
-    IndividualTaxesPayed, SalariesPayment, SalariesPayedPerMonth
+from cashier.payments.models import (
+    PaymentsAdmin,
+    IndividualPayment,
+    TaxesPerMonth,
+    SalariesPerMonth,
+    IndividualTaxesPayed,
+    SalariesPayment,
+    SalariesPayedPerMonth,
+)
 from cashier.profiles.models import UserProfile
 from cashier.users.models import CashierUser, ContactDetails
 
 
 class CashierUserAdmin(admin.ModelAdmin):
-    exclude = ('password','username')
+    exclude = ("password", "username")
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    exclude = ('user',)
+    exclude = ("user",)
 
 
 admin.site.register(CashierUser, CashierUserAdmin)

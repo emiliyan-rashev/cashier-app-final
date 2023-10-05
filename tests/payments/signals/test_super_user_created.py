@@ -1,8 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.test import Client
 
-from cashier.payments.models import PaymentsAdmin, TaxesPerMonth, SalariesPerMonth, SalariesPayedPerMonth, \
-    SalariesPayment
+from cashier.payments.models import (
+    PaymentsAdmin,
+    TaxesPerMonth,
+    SalariesPerMonth,
+    SalariesPayedPerMonth,
+    SalariesPayment,
+)
 from tests.base.common import CashierTestCase
 
 UserModel = get_user_model()

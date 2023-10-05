@@ -2,7 +2,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cashier.profiles.models import UserProfile
 
-#To be tested after the household profile signals are tested
+
+# To be tested after the household profile signals are tested
 @receiver(post_save, sender=UserProfile)
 def apartment_changed(instance, **kwargs):
     form = UserProfile.objects.get(user=instance.user)
@@ -15,4 +16,3 @@ def apartment_changed(instance, **kwargs):
         form.apartment = None
         form.is_household_admin = False
         form.save()
-

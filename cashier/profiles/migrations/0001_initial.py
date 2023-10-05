@@ -6,28 +6,49 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('households', '0001_initial'),
-        ('users', '0001_initial'),
+        ("households", "0001_initial"),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserProfile',
+            name="UserProfile",
             fields=[
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('phone_number', models.CharField(max_length=10, validators=[cashier.profiles.models.validate_integer])),
-                ('apartment', models.IntegerField(blank=True, null=True)),
-                ('live_in_apartment', models.BooleanField(default=True)),
-                ('newsletter_agreement', models.BooleanField(default=False)),
-                ('is_household_admin', models.BooleanField(default=False)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='users.cashieruser')),
-                ('household', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='households.householdprofile')),
+                ("first_name", models.CharField(max_length=50)),
+                ("last_name", models.CharField(max_length=50)),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=10,
+                        validators=[cashier.profiles.models.validate_integer],
+                    ),
+                ),
+                ("apartment", models.IntegerField(blank=True, null=True)),
+                ("live_in_apartment", models.BooleanField(default=True)),
+                ("newsletter_agreement", models.BooleanField(default=False)),
+                ("is_household_admin", models.BooleanField(default=False)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        primary_key=True,
+                        serialize=False,
+                        to="users.cashieruser",
+                    ),
+                ),
+                (
+                    "household",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="households.householdprofile",
+                    ),
+                ),
             ],
         ),
     ]

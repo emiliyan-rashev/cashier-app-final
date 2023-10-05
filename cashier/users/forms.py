@@ -5,4 +5,6 @@ from cashier.users.models import CashierUser
 class UserForm(UserCreationForm):
     class Meta:
         model = CashierUser
-        fields = ['username', ]
+        fields = [
+            "username",
+        ]

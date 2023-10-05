@@ -12,9 +12,22 @@ class PaySalaries(CashierTestCase, PaySalariesAndTaxes):
         self.client = Client()
         self.create_superuser()
         self.client.force_login(self.super_user)
-        self.month_keys = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        self.month_keys = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ]
         self.curr_month = datetime.date.today().month
-        self.future_months = self.month_keys[self.curr_month:len(self.month_keys)]
-        self.target = reverse('salaries_payment')
+        self.future_months = self.month_keys[self.curr_month : len(self.month_keys)]
+        self.target = reverse("salaries_payment")
         self.tax_class_object = SalariesPerMonth.objects.filter(pk=1)
         self.paid_class_object = SalariesPayedPerMonth.objects.filter(pk=1)

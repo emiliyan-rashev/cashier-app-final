@@ -16,9 +16,11 @@ class NewsSignal(CashierTestCase):
         admin_payment_profile = PaymentsAdmin.objects.get(pk=1)
         admin_payment_profile.individual_monthly_tax = new_tax
         admin_payment_profile.save()
-        tax_message = f'The tax has changed from {previous_tax} to {new_tax}'
-        self.assertTrue(News.objects.filter(title='Tax changed', content=tax_message).exists())
-        self.assertFalse(News.objects.filter(title='Salaries changed').exists())
+        tax_message = f"The tax has changed from {previous_tax} to {new_tax}"
+        self.assertTrue(
+            News.objects.filter(title="Tax changed", content=tax_message).exists()
+        )
+        self.assertFalse(News.objects.filter(title="Salaries changed").exists())
 
     def test_news_object_for_salary_only_created(self):
         previous_salary = PaymentsAdmin.objects.get(pk=1).salaries
@@ -26,9 +28,15 @@ class NewsSignal(CashierTestCase):
         admin_payment_profile = PaymentsAdmin.objects.get(pk=1)
         admin_payment_profile.salaries = new_salary
         admin_payment_profile.save()
-        salaries_message = f'The salaries have changed from {previous_salary} to {new_salary}'
-        self.assertFalse(News.objects.filter(title='Tax changed').exists())
-        self.assertTrue(News.objects.filter(title='Salaries changed', content=salaries_message).exists())
+        salaries_message = (
+            f"The salaries have changed from {previous_salary} to {new_salary}"
+        )
+        self.assertFalse(News.objects.filter(title="Tax changed").exists())
+        self.assertTrue(
+            News.objects.filter(
+                title="Salaries changed", content=salaries_message
+            ).exists()
+        )
 
     def test_news_object_for_both_tax_and_salary_created(self):
         previous_tax = PaymentsAdmin.objects.get(pk=1).individual_monthly_tax
@@ -39,8 +47,16 @@ class NewsSignal(CashierTestCase):
         admin_payment_profile.individual_monthly_tax = new_tax
         admin_payment_profile.salaries = new_salary
         admin_payment_profile.save()
-        tax_message = f'The tax has changed from {previous_tax} to {new_tax}'
-        salaries_message = f'The salaries have changed from {previous_salary} to {new_salary}'
+        tax_message = f"The tax has changed from {previous_tax} to {new_tax}"
+        salaries_message = (
+            f"The salaries have changed from {previous_salary} to {new_salary}"
+        )
 
-        self.assertTrue(News.objects.filter(title='Salaries changed', content=salaries_message).exists())
-        self.assertTrue(News.objects.filter(title='Tax changed', content=tax_message).exists())
+        self.assertTrue(
+            News.objects.filter(
+                title="Salaries changed", content=salaries_message
+            ).exists()
+        )
+        self.assertTrue(
+            News.objects.filter(title="Tax changed", content=tax_message).exists()
+        )

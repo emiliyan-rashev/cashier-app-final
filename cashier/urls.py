@@ -18,10 +18,10 @@ from django.shortcuts import redirect
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('cashier.users.urls')),
-    path('profile/', include('cashier.profiles.urls')),
-    path('household/', include('cashier.households.urls')),
-    path('payments/', include('cashier.payments.urls')),
-    path('news/', include('cashier.news.urls'))
+    path("admin/", admin.site.urls),
+    path("", include("cashier.users.urls")),
+    path("profile/", include("cashier.profiles.urls")),
+    path("household/", include("cashier.households.urls")),
+    path("payments/", include("cashier.payments.urls")),
+    path("news/", include("cashier.news.urls")),
 ]
