@@ -1,4 +1,3 @@
-The following documentation describes how the cashier app works.
 1.	The app’s main idea is each person in the building to register and pay their taxes through the app.
 2.	First the admin is registered and after this, each user can register and start paying their taxes.
 3.	The app also features 3 user roles:
@@ -25,3 +24,13 @@ The following documentation describes how the cashier app works.
 The idea of having 2 levels of administration is to split the responsibilities, so the main admin (superuser) doesn’t have to deal with every single operation for default users.
 The app includes a news section, where the admin adds important information. In the “News” section there are automatic messages to show if a tax or salary has changed. All users can comment on it.
 The admin has a view for all households and for all users and has full CRUD permissions.
+
+To set the project localy clone the repo and create .env file in the project folder and set the following variables:<br/>
+```DB_NAME```<br/>
+```DB_USER```<br/>
+```DB_PASSWORD```<br/>
+```DB_HOST```<br/>
+```DB_PORT```<br/>
+
+Then run ```pip install -r requirements.txt``` in your virtual environment to install the project's requirements.<br/>
+Start a development server ```python manage.py runserver```.
