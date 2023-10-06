@@ -3,47 +3,20 @@
 {% block content %}
     <b>All not approved users ({{ not_approved_members.count }})</b><br/><br/>
     {% if not_approved_members %}
-        <table>
-            <tr>
-                <th style="padding: 5px;">
-                    First name
-                </th>
-                <th style="padding: 5px;">
-                    Last name
-                </th>
-                <th style="padding: 5px;">
-                    Username
-                </th>
-                <th style="padding: 5px;">
-                    Apartment
-                </th>
-                <th style="padding: 5px;">
-                    Approve/ Reject
-                </th>
-            </tr>
             {% for curr_member in not_approved_members %}
-                <tr>
-                    <td style="padding: 5px;">
-                         {{ curr_member.first_name }}
-                    </td>
-                    <td style="padding: 5px;">
-                        {{ curr_member.last_name }}
-                    </td>
-                    <td style="padding: 5px;">
-                        <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
-                    </td>
-                    <td style="padding: 5px;">
+                <div class="row">
+                    <div class="col">
+                         {{ curr_member.first_name }} {{ curr_member.last_name }} <a href="{% url 'view_profile' curr_member.user.id %}">{{ curr_member.user }}</a>
                         {% if curr_member.apartment in existing_apartments %}
                             <a href="{% url 'hh_profile' curr_member.apartment %}">{{ curr_member.apartment }} apt.</a>
                         {% else %}
                             {{ curr_member.apartment }} apt.
                         {% endif %}
-                    </td>
-                    <td style="padding: 5px;">
+                    </div>
+                    <div class="col">
                         <a href="{% url 'hh_approve_user' curr_member.user.id %}" class="btn bg-warning">Approve / Reject</a>
-                    </td>
-                </tr>
+                    </div>
+                </div>
         {% endfor %}
-        </table>
     {% endif %}
 {% endblock %}

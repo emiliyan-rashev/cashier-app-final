@@ -1,14 +1,19 @@
 {% extends 'base/base.html' %}
 
+{% block alerts %}
+    {% if error_message %}
+            <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    {% if error_message %}
-        <span style="color: red">{{ error_message }}</span><br/><br/>
-    {% endif %}
-
     {% if news == None %}
-    <h2>This is the cashier app</h2>
-    <h4>Tax payments made easy</h4>
+        <div class="text-center">
+            <h5>Welcome to your online cashier app.</h5>
+            Here you can pay your own your household's taxes.<br/>
+            You can also manage the taxes and the salaries in the building.<br/>
+            New section will be updated automatically when a change in the taxes or the salaries occur.
+        </div>
     {% endif %}
 
     {% if request.user.is_superuser and news.count >= 0 %}
@@ -16,37 +21,34 @@
     {% endif %}
 
     {% if news %}
-        <table style="margin: 10px">
         {% for curr_news in news %}
-            <tr>
-                <td style="padding: 3px;">
-                    <b>{{ curr_news.title }}</b>
-                </td>
-                <td style="padding: 3px;">
-                    <a href="{% url 'comment_news_view' curr_news.id %}">See more...</a>
-                </td>
-            </tr>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ curr_news.title }}</h5>
+                    <p class="card-text">{{ curr_news.content }}</p>
+                    <a href="{% url 'comment_news_view' curr_news.id %}" class="btn btn-info">See more</a>
+                </div>
+            </div>
         {% endfor %}
-        </table>
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+        <div class="pagination justify-center">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     {% elif news.count == 0 %}
         Currently there are no news.
     {% endif %}
-
 {% endblock %}

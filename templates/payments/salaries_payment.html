@@ -1,51 +1,31 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <table>
-            <tr>
-                <th style="padding: 5px;">
-                    Month
-                </th>
-                <th style="padding: 5px;">
-                    Tax
-                </th>
-                <th style="padding: 5px;">
-                    Paid
-                </th>
-            </tr>
-        {% for curr_month, curr_tax, is_paid in tax_info %}
-        <tr>
-            <td style="padding: 5px;">
-                {{ curr_month }}
-            </td>
-            <td style="padding: 5px;">
-                {{ curr_tax }}
-            </td>
-            <td style="padding: 5px;">
-                {{ is_paid }}
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td style="padding: 5px;">
-                <b>Total: </b>
-            </td>
-            <td style="padding: 5px;">
-                <b>{{ total_taxes_needed }} </b>
-            </td>
-            <td style="padding: 5px;">
-                <b>{{ total_taxes_paid }} </b>
-            </td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col">Month</div>
+        <div class="col">Tax</div>
+        <div class="col">Paid</div>
+    </div>
+    {% for curr_month, curr_tax, is_paid in tax_info %}
+        <div class="row">
+            <div class="col">{{ curr_month }}</div>
+            <div class="col">{{ curr_tax }}</div>
+            <div class="col">{{ is_paid }}</div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col"><b>Total: </b></div>
+        <div class="col"><b>{{ total_taxes_needed }} </b></div>
+        <div class="col"><b>{{ total_taxes_paid }} </b></div>
+    </div>
     {% if form.fields %}
         <form method="post" style="padding: 5px;">
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn-primary">Pay</button>
+            <button class="btn btn-primary">Pay</button>
         </form>
     {% else %}
-        You have paid all salaries :)
+        <p class="message-success"><i class="bi bi-check"></i>You have paid all salaries :)</p>
     {% endif %}
 
 {% endblock %}

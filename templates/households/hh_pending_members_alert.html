@@ -1,17 +1,14 @@
 {% if profile_type == 'hh_admin' or profile_type == 'superuser' %}
     {% if member_list %}
-        <br/><br/><span style="color: red;" class="list-group-item">
-        {% if profile_type == 'superuser' %}
-            There are <b>{{ member_list.count }}</b> members without household admins that are not approved.<br/>
-        {% else %}
-            There are <b>{{ member_list.count }}</b> members in your household that are not approved.<br/>
-        {% endif %}
-        Click <a href="
-                {% if household %}
-                    {% url 'hh_profile' household %}
-                {% else %}
-                {% url 'urgent_pending_members' %}
-                {% endif %}
-        ">here</a> to approve/ reject them.</span>
+        <div class="alert alert-danger" role="alert">
+            {% if profile_type == 'superuser' %}
+                There are <b>{{ member_list.count }}</b> members without household admins that are not approved.<br/>
+            {% else %}
+                There are <b>{{ member_list.count }}</b> members in your household that are not approved.<br/>
+            {% endif %}
+            Click
+            <a href="{% if household %}{% url 'hh_profile' household %}{% else %}{% url 'urgent_pending_members' %}{% endif %}">here</a>
+            to approve/ reject them.
+        </div>
     {% endif %}
 {% endif %}

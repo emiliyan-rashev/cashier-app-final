@@ -1,0 +1,34 @@
+.form-small {
+    justify-content: center;
+    display: flex;
+}
+
+.navbar {
+    background: #4ac1f7;
+}
+
+body {
+    background: floralwhite;
+}
+
+.medium-container {
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.news-title {
+    color: chocolate;
+}
+
+.message-success {
+    color: green;
+}

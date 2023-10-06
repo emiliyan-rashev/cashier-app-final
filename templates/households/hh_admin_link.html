@@ -1,4 +1,3 @@
-<!--Not the best use of inclusion tag :)-->
 {% if is_hh_admin %}
-<a href="{% url 'hh_profile' apartment %}" class="btn nav-tabs">Apt. {{ apartment }}</a>
+    <a href="{% url 'hh_profile' apartment %}" class="btn nav-brand">Apt. {{ apartment }}</a>
 {% endif %}

@@ -1,5 +1,5 @@
 from django.urls import reverse
-from cashier.users.models import ContactDetails
+from users.models import ContactDetails
 from tests.base.common import CashierTestCase
 
 

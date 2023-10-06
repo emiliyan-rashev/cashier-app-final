@@ -1,6 +1,6 @@
 from django.test import Client
 
-from cashier.payments.models import IndividualPayment, IndividualTaxesPayed
+from payments.models import IndividualPayment, IndividualTaxesPayed
 from tests.base.common import CashierTestCase
 
 

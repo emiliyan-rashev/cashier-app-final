@@ -1,7 +1,7 @@
 from django.test import Client
 
-from cashier.news.models import News
-from cashier.payments.models import PaymentsAdmin
+from news import News
+from payments.models import PaymentsAdmin
 from tests.base.common import CashierTestCase
 
 

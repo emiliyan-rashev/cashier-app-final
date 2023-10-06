@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from cashier.profiles.models import UserProfile
+from profiles.models import UserProfile
 
 UserModel = get_user_model()
 

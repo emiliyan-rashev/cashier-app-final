@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client
 
-from cashier.payments.models import (
+from payments.models import (
     PaymentsAdmin,
     TaxesPerMonth,
     SalariesPerMonth,

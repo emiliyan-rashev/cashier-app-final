@@ -1,10 +1,12 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<form method="post" action="{% url 'register_view' %}">
-{% csrf_token %}
-{{ user_form.as_p }}
-{{ profile_form.as_p }}
-<button class="btn-primary">Register</button>
-</form>
+    <div class="form-small">
+        <form method="post" action="{% url 'register_view' %}">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
 {% endblock %}

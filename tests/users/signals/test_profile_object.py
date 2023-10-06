@@ -1,4 +1,4 @@
-from cashier.profiles.models import UserProfile
+from profiles.models import UserProfile
 from tests.base.common import CashierTestCase
 
 

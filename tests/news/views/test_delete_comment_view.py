@@ -1,7 +1,7 @@
 from django.test import Client
 from django.urls import reverse
 
-from cashier.news.models import News, Comment
+from news import News, Comment
 from tests.base.common import CashierTestCase
 
 

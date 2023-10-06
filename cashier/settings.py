@@ -24,11 +24,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "cashier.users",
-    "cashier.profiles",
-    "cashier.households",
-    "cashier.payments",
-    "cashier.news",
+    "users",
+    "profiles",
+    "households",
+    "payments",
+    "news",
 ]
 
 MIDDLEWARE = [
@@ -93,8 +93,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

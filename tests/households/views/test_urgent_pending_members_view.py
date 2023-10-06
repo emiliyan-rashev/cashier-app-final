@@ -3,8 +3,8 @@ from django.db.models import Q
 from django.test import Client
 from django.urls import reverse
 
-from cashier.households.models import HouseholdProfile
-from cashier.profiles.models import UserProfile
+from households import HouseholdProfile
+from profiles.models import UserProfile
 from tests.base.common import CashierTestCase
 
 UserModel = get_user_model()

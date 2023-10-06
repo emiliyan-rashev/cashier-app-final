@@ -1,12 +1,24 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <span class="list-group-item">
-		Tel.: {{ phone }}<br/>
-		e-mail: <a href="mailto: {{ email }}" target="_blank">{{ email }}</a><br/>
+    <div class="card">
+        <div class="card-body">
+		Tel.:
+            {% if phone %}
+                {{ phone }}
+            {% else %}
+                Not available
+            {% endif %}
+        <br/>
+		e-mail:
+            {% if email %}
+                <a href="mailto: {{ email }}" target="_blank">{{ email }}</a><br/>
+            {% else %}
+                Not available
+            {% endif %}
 		{{ first_name }} {{ last_name }}
-		<!-- To apply the capitalize filter -->
-	</span>
+        </div>
+    </div>
 
     {% if request.user.is_superuser %}
         <a href="{% url 'update_contact_view' %}" class="btn bg-warning">Edit</a>

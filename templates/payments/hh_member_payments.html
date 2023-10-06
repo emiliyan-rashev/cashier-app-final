@@ -2,34 +2,24 @@
 
 {% block content %}
 {% if members_in_hh %}
-    <h2>Click on the username to make payment for the corresponding user.</h2>
-    <table>
-        <tr>
-            <th>
-                First name
-            </th>
-            <th>
-                Last name
-            </th>
-            <th>
-                Username
-            </th>
-            <td>
-        </tr>
+    <div class="alert alert-info" role="alert">Click on the username to make payment for the corresponding user.</div>
+    <div class="row">
+        <div class="col"><b>First name</b></div>
+        <div class="col"><b>Last name</b></div>
+        <div class="col"><b>Username</b></div>
+    </div>
     {% for curr_member in members_in_hh %}
-        <tr>
-            <td>
+        <div class="row">
+            <div class="col">
                 {{ curr_member.first_name }}
-            </td>
-            <td>
+            </div>
+            <div class="col">
                 {{ curr_member.last_name }}
-            </td>
-            <td>
+            </div>
+            <div class="col">
                 <a href="{% url 'make_payment' curr_member.user.id %}">{{ curr_member.user }}</a>
-            </td>
-            <td>
-        </tr>
+            </div>
+        </div>
     {% endfor %}
-    </table>
 {% endif %}
 {% endblock %}

@@ -1,6 +1,5 @@
 import datetime
 from django.test import Client
-from cashier.payments.models import SalariesPayedPerMonth
 
 
 class PaySalariesAndTaxes:

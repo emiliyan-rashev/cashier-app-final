@@ -3,7 +3,7 @@ import datetime
 from django.test import Client
 from django.urls import reverse
 
-from cashier.payments.models import TaxesPerMonth, IndividualTaxesPayed
+from payments.models import TaxesPerMonth, IndividualTaxesPayed
 from tests.base.common import CashierTestCase
 from tests.payments.common.taxes_and_salaries_payments import PaySalariesAndTaxes
 
